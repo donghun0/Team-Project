@@ -24,12 +24,19 @@ public class GameStart {
         });
 
         // 다른 게임 버튼 추가 예시
-        JButton otherGameButton1 = new JButton("농담곰 Quiz");
-        JButton otherGameButton2 = new JButton("게임3");
+        JButton quizButton = new JButton("상식 퀴즈");
+        quizButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new Quiz(); // 퀴즈 게임 시작
+            }
+        });
+        
+        JButton otherGameButton = new JButton("게임3");
 
         frame.add(rockPaperScissorsButton);
-        frame.add(otherGameButton1);
-        frame.add(otherGameButton2);
+        frame.add(quizButton);
+        frame.add(otherGameButton);
 
         frame.setVisible(true);
     }
