@@ -8,7 +8,7 @@ import java.util.Random;
 
 public class RockScissorsPaper {
 
-    public static void main(String[] args) {
+    public static void startGame() {
         JFrame frame = new JFrame("가위바위보 게임");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
