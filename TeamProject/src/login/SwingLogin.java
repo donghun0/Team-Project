@@ -104,8 +104,6 @@ public class SwingLogin extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				SignUp signup = new SignUp();
 				signup.setVisible(true);
-				
-				
 			}
 		});
 		

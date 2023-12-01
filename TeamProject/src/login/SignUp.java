@@ -132,8 +132,20 @@ public class SignUp extends JDialog{
 				JOptionPane.showMessageDialog(null, "회원 가입이 완료 되었습니다.","회원 가입 완료.", JOptionPane.WARNING_MESSAGE);
 								
 				setVisible(false);
+				
+				 showStartupDialog();
 			}
 		});
+	 }
+	 
+	 private void showStartupDialog() {
+	        SwingUtilities.invokeLater(new Runnable() {
+	            @Override
+	            public void run() {
+	                StartupDialog startupDialog = new StartupDialog(null);
+	                startupDialog.setVisible(true);
+	            }
+	        });
 	 }
 	 
 	 //메인 클래스에서 다이얼로그 회원가입 창 데이터를 가져오기 위한 get 메소드 선언
