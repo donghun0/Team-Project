@@ -34,7 +34,18 @@ public class QuestionBank {
         questions.add(new Question("'개선문'이 위치한 도시는 어디인가요?", new String[]{"런던", "베를린", "파리", "로마"}, "파리"));
         questions.add(new Question("유명한 이탈리아의 탑, '피사의 사탑'은 원래 어떤 목적으로 건설되었나요?", new String[]{"감시탑", "기념탐", "성문", "종탑"}, "종탑"));
         questions.add(new Question("'노르망디 상륙 작전'이 일어난 전쟁은 무엇인가요?", new String[]{"제1차 세계대전", "제2차 세계대전", "한국전쟁", "베트남전"}, "제2차 세계대전"));
+        questions.add(new Question("바람이 지구의 자전에 의해 휘어지는 현상을 무엇이라고 하나요?", new String[]{"베르누이 효과", "파스칼 법칙", "코리올리 효과", "뉴턴 제3법칙"}, "코리올리 효과"));
+        questions.add(new Question("'차르'는 어느 나라의 전통적인 군주 칭호였나요?", new String[]{"프랑스", "영국", "독일", "러시아"}, "러시아"));
+        questions.add(new Question("대기 중에서 가장 풍부한 가스는 무엇인가요?", new String[]{"질소", "산소", "이산화탄소", "아르곤"}, "질소"));
+        questions.add(new Question("2020년 도쿄 올림픽이 열린 연도는 언제인가요?", new String[]{"2019년", "2020년", "2021년", "2022년"}, "2021년"));
+        questions.add(new Question("'아마존 강'이 흐르는 대륙은 어디인가요?", new String[]{"북아메리카", "남아메리카", "아프리카", "아시아"}, "남아메리카"));
+        questions.add(new Question("'에베레스트산'이 위치한 산맥은 무엇인가요?", new String[]{"알프스", "록키", "히말라야", "안데스"}, "히말라야"));
+        questions.add(new Question("'로마 숫자'에서 50을 나타내는 기호는 무엇인가요?", new String[]{"C", "D", "X", "L"}, "L"));
+        questions.add(new Question("'타이타닉' 호가 침몰한 해는 언제인가요?", new String[]{"1912년", "1915년", "1918년", "1920년"}, "1912년"));
+        questions.add(new Question("올림픽에서 금메달은 주로 어떤 금속으로 만들어지나요?", new String[]{"금", "은", "동", "플래티넘"}, "은"));
+        questions.add(new Question("'마하' 단위는 무엇을 측정하는 데 사용되나요?", new String[]{"압력", "온도", "속도", "높이"}, "속도"));
 
+        //30개...
     }
 
     public List<Question> getRandomQuestions(int numberOfQuestions) {
