@@ -51,7 +51,7 @@ public class Quiz {
         feedbackLabel = new JLabel("정답 혹은 오답을 여기에 표시합니다.", SwingConstants.CENTER);
         frame.add(feedbackLabel, BorderLayout.SOUTH);
 
-        frame.setSize(400, 300);
+        frame.setSize(450, 150);
         frame.setVisible(true);
 
         nextQuestion();
@@ -78,7 +78,7 @@ public class Quiz {
             feedbackLabel.setText("정답입니다!");
             correctAnswers++;
         } else {
-            feedbackLabel.setText("오답입니다. 정답은 " + currentQuestion.getCorrectAnswer() + "입니다.");
+            feedbackLabel.setText("오답입니다.");
         }
 
         // 사용자가 답을 선택하면 다음 문제로 넘어감
