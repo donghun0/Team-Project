@@ -1,5 +1,6 @@
 package game;
 
+import java.awt.Font;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -7,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.List;
+import java.io.File;
 
 public class Quiz {
 
@@ -58,8 +60,31 @@ public class Quiz {
 
         feedbackLabel = new JLabel("정답 혹은 오답을 여기에 표시합니다.", SwingConstants.CENTER);
         frame.add(feedbackLabel, BorderLayout.SOUTH);
+        
+     // 폰트 파일 경로
+        String fontFilePath = "img/neodgm.ttf";
 
-        frame.setSize(450, 150);
+        try {
+            // 폰트 파일 로드
+            Font customFont = Font.createFont(Font.TRUETYPE_FONT, new File(fontFilePath));
+
+            // 폰트 크기 설정
+            customFont = customFont.deriveFont(Font.PLAIN, 18); // 혹시 필요시 폰트 크기 수정
+
+            // 폰트 설정
+            questionLabel.setFont(customFont);
+            feedbackLabel.setFont(customFont);
+
+            for (JButton button : answerButtons) {
+                button.setFont(customFont);
+            }
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            // 폰트 로딩에 실패한 경우 기본 폰트를 사용하거나 에러 처리를 수행할 수 있습니다.
+        }
+
+        frame.setSize(600, 200);
         frame.setVisible(true);
 
         nextQuestion();

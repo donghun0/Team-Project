@@ -32,7 +32,7 @@ public class QuestionBank {
         questions.add(new Question("태평양 전쟁은 언제 일어났나요?", new String[]{"1914-1918년", "1923-1927년", "1937-1941년", "1941-1945년"}, "1941-1945년"));
         questions.add(new Question("월드와이드웹(www)을 처음 만든 사람은 누구인가요?", new String[]{"빌 게이츠", "팀 버너스 리", "윌리엄 게이츠", "마크 주커버그"}, "팀 버너스 리"));
         questions.add(new Question("'개선문'이 위치한 도시는 어디인가요?", new String[]{"런던", "베를린", "파리", "로마"}, "파리"));
-        questions.add(new Question("유명한 이탈리아의 탑, '피사의 사탑'은 원래 어떤 목적으로 건설되었나요?", new String[]{"감시탑", "기념탐", "성문", "종탑"}, "종탑"));
+        questions.add(new Question("이탈리아의 '피사의 사탑'은 원래 어떤 목적으로 건설되었나요?", new String[]{"감시탑", "기념탐", "성문", "종탑"}, "종탑"));
         questions.add(new Question("'노르망디 상륙 작전'이 일어난 전쟁은 무엇인가요?", new String[]{"제1차 세계대전", "제2차 세계대전", "한국전쟁", "베트남전"}, "제2차 세계대전"));
         questions.add(new Question("바람이 지구의 자전에 의해 휘어지는 현상을 무엇이라고 하나요?", new String[]{"베르누이 효과", "파스칼 법칙", "코리올리 효과", "뉴턴 제3법칙"}, "코리올리 효과"));
         questions.add(new Question("'차르'는 어느 나라의 전통적인 군주 칭호였나요?", new String[]{"프랑스", "영국", "독일", "러시아"}, "러시아"));
