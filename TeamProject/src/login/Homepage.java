@@ -1,7 +1,6 @@
 package login;
 
 import javax.swing.*;
-
 import game.GameStart;
 import shop.ShopApp;
 
@@ -9,20 +8,20 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Homepage extends JFrame {
+public class Homepage extends JFrame{
+	
+	private JLabel moneyLabel;
 
     public Homepage() {
         // 프레임 초기화
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800, 600);
         setTitle("농담곰 방");
-        
-
-        
+       
        
         // 배경 이미지 설정
 
-        ImageIcon backgroundImageIcon = new ImageIcon("C:\\Users\\user\\Desktop\\프방기말프로젝트\\nongdambang.png");
+        ImageIcon backgroundImageIcon = new ImageIcon("img//login//nongdambang.png");
         Image backgroundImage = backgroundImageIcon.getImage();
         Image resizedBackgroundImage = backgroundImage.getScaledInstance(800, 600, Image.SCALE_SMOOTH);
         backgroundImageIcon = new ImageIcon(resizedBackgroundImage);
@@ -78,6 +77,13 @@ public class Homepage extends JFrame {
             	ShopApp.main(new String[0]);
             }
         });
+        
+     // Money Label
+        moneyLabel = new JLabel("현재 돈: " + GameStart.getMoney() + "원");
+        moneyLabel.setForeground(Color.BLACK);
+        moneyLabel.setFont(new Font("NEO둥근모", Font.PLAIN, 20));
+        moneyLabel.setBounds(660, 250, 150, 30);
+        add(moneyLabel);
 
         // 버튼을 프레임에 추가
         add(challengeButton);
@@ -88,6 +94,11 @@ public class Homepage extends JFrame {
         // 프레임 표시
         setVisible(true);
     }
+    
+    public void updateMoneyLabel() {
+        moneyLabel.setText("현재 돈: " + GameStart.money + "원");
+    }
+
 
     private JButton createButton(String text, Font font) {
         JButton button = new JButton(text);
@@ -99,7 +110,8 @@ public class Homepage extends JFrame {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new Homepage();
+            	Homepage homepage = new Homepage();
+               
             }
         });
     }

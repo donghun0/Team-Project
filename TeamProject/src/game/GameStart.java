@@ -6,7 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class GameStart {
-    private static int money = 0; // 돈 축적을 위한 변수
+	public static int money = 0; // 돈 축적을 위한 변수
     private static JLabel moneyLabel;
     private static JFrame frame; // 게임 선택 창을 위한 프레임 변수
 
@@ -74,5 +74,10 @@ public class GameStart {
             // Update the text if moneyLabel is already initialized
             moneyLabel.setText("현재 돈: " + money + "원");
         }
+        
     }
+    public static int getMoney() {
+        return money;
+    }
+    
 }
