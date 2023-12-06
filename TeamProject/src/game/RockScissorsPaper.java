@@ -23,26 +23,32 @@ public class RockScissorsPaper {
         });
         
         frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
+        int 버튼너비 = 200;
+        int 버튼높이 = 200;
+
 
         // 이미지 크기를 조정하는 메소드
-        ImageIcon scissorsIcon = new ImageIcon("img/game/scissors.png");
+        ImageIcon scissorsIcon = new ImageIcon("img/game/scissor.png");
         ImageIcon rockIcon = new ImageIcon("img/game/rock.png");
         ImageIcon paperIcon = new ImageIcon("img/game/paper.png");
 
-        Image scissorsImage = scissorsIcon.getImage().getScaledInstance(70, 70, Image.SCALE_SMOOTH);
-        Image rockImage = rockIcon.getImage().getScaledInstance(70, 70, Image.SCALE_SMOOTH);
-        Image paperImage = paperIcon.getImage().getScaledInstance(70, 70, Image.SCALE_SMOOTH);
+        Image scissorsImage = scissorsIcon.getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH);
+        Image rockImage = rockIcon.getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH);
+        Image paperImage = paperIcon.getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH);
         
         JButton scissorsButton = new JButton(new ImageIcon(scissorsImage));
+        scissorsButton.setPreferredSize(new Dimension(버튼너비, 버튼높이));
         JButton rockButton = new JButton(new ImageIcon(rockImage));
+        rockButton.setPreferredSize(new Dimension(버튼너비, 버튼높이));
         JButton paperButton = new JButton(new ImageIcon(paperImage));
+        paperButton.setPreferredSize(new Dimension(버튼너비, 버튼높이));
         
         JLabel resultLabel = new JLabel("결과가 여기에 표시됩니다.", SwingConstants.CENTER);
         resultLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        resultLabel.setPreferredSize(new Dimension(300, 30)); // 라벨의 선호 크기 설정
+        resultLabel.setPreferredSize(new Dimension(200, 200)); // 라벨의 선호 크기 설정
        
         JLabel computerChoiceLabel = new JLabel(); // 컴퓨터의 선택을 보여줄 라벨
-        computerChoiceLabel.setPreferredSize(new Dimension(70, 70)); // 컴퓨터 선택 라벨의 초기 크기 설정
+        computerChoiceLabel.setPreferredSize(new Dimension(200, 200)); // 컴퓨터 선택 라벨의 초기 크기 설정
         
         ActionListener actionListener = new ActionListener() {
             @Override
@@ -116,7 +122,7 @@ public class RockScissorsPaper {
         ImageIcon icon;
         switch (choice) {
             case "가위":
-                icon = new ImageIcon("img/game/scissors.png");
+                icon = new ImageIcon("img/game/scissor.png");
                 break;
             case "바위":
                 icon = new ImageIcon("img/game/rock.png");
@@ -128,7 +134,7 @@ public class RockScissorsPaper {
                 return; // 잘못된 선택인 경우 아무 것도 하지 않음
         }
 
-        Image image = icon.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
+        Image image = icon.getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH);
         label.setIcon(new ImageIcon(image));
     }
 
