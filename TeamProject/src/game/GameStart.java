@@ -6,12 +6,19 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class GameStart {
+	
+	private static int money = 0; // 돈 축적을 위한 변수
+    private static JLabel moneyLabel;
 
     public static void main(String[] args) {
         // 게임 선택 창을 위한 프레임 생성
         JFrame frame = new JFrame("게임 선택");
         frame.setLayout(new FlowLayout());
         frame.setSize(350, 100);
+        
+     // 현재 있는 돈 표시
+        JLabel moneyLabel = new JLabel("현재 돈: " + money + "원");
+        frame.add(moneyLabel);
 
         // 가위바위보 게임 버튼
         JButton rockPaperScissorsButton = new JButton("가위바위보");
@@ -40,11 +47,26 @@ public class GameStart {
             }
         });
         
+        
         frame.add(rockPaperScissorsButton);
         frame.add(quizButton);
         frame.add(memoryMatchGameButton);
 
         frame.setVisible(true);
+    }
+    
+    public static void increaseMoney(int amount) {
+        money += amount;
+
+        // Check if moneyLabel is null and initialize it if needed
+        if (moneyLabel == null) {
+            moneyLabel = new JLabel("현재 돈: " + money + "원");
+            // Add moneyLabel to the frame or panel where it should be displayed
+            // For example, frame.add(moneyLabel);
+        } else {
+            // Update the text if moneyLabel is already initialized
+            moneyLabel.setText("현재 돈: " + money + "원");
+        }
     }
 }
 

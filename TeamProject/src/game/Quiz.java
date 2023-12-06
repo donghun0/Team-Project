@@ -96,6 +96,12 @@ public class Quiz {
     private void showFinalResult() {
         String resultMessage = (correctAnswers >= 3 ? "성공! " : "실패! ") + 
                                "정답 개수: " + correctAnswers + " / 5";
+        
+        if (correctAnswers >= 3) {
+            updateMoney(500); // Earn 500 won for 3 or more correct answers
+            resultMessage += "\n500원을 획득하였습니다!";
+        }
+        
         Object[] options = {"종료"};
         int option = JOptionPane.showOptionDialog(frame, resultMessage, "퀴즈 종료",
                                                   JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, 
@@ -105,6 +111,10 @@ public class Quiz {
             frame.dispose();
             openGameSelectionWindow();
         }
+    }
+    
+    private void updateMoney(int amount) {
+        GameStart.increaseMoney(amount);
     }
 
     private void openGameSelectionWindow() {

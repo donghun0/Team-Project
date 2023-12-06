@@ -57,6 +57,7 @@ public class RockScissorsPaper {
                 }
                 String computerChoice = getComputerChoice();
                 updateComputerChoiceImage(computerChoice, computerChoiceLabel); // 컴퓨터의 선택에 따라 이미지 업데이트
+                
                 String result = determineWinner(playerChoice, computerChoice);
                 showResultDialog(result, frame); // 결과 창 표시
                 frame.setVisible(false); // 메인 프레임 숨기기
@@ -142,7 +143,7 @@ public class RockScissorsPaper {
             return "재도전!";
         } else if ((playerChoice.equals("가위") && computerChoice.equals("보")) ||
                    (playerChoice.equals("바위") && computerChoice.equals("가위")) ||
-                   (playerChoice.equals("보") && computerChoice.equals("바위"))) {
+                   (playerChoice.equals("보") && computerChoice.equals("바위"))) { 
             return "승리!";
         } else {
             return "패배!";
