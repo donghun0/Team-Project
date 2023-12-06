@@ -28,18 +28,18 @@ public class RockScissorsPaper {
 
 
         // 이미지 크기를 조정하는 메소드
-        ImageIcon scissorsIcon = new ImageIcon("img/game/scissor.png");
         ImageIcon rockIcon = new ImageIcon("img/game/rock.png");
+        ImageIcon scissorsIcon = new ImageIcon("img/game/scissor.png");
         ImageIcon paperIcon = new ImageIcon("img/game/paper.png");
 
-        Image scissorsImage = scissorsIcon.getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH);
         Image rockImage = rockIcon.getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH);
+        Image scissorsImage = scissorsIcon.getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH);
         Image paperImage = paperIcon.getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH);
         
-        JButton scissorsButton = new JButton(new ImageIcon(scissorsImage));
-        scissorsButton.setPreferredSize(new Dimension(버튼너비, 버튼높이));
         JButton rockButton = new JButton(new ImageIcon(rockImage));
         rockButton.setPreferredSize(new Dimension(버튼너비, 버튼높이));
+        JButton scissorsButton = new JButton(new ImageIcon(scissorsImage));
+        scissorsButton.setPreferredSize(new Dimension(버튼너비, 버튼높이));
         JButton paperButton = new JButton(new ImageIcon(paperImage));
         paperButton.setPreferredSize(new Dimension(버튼너비, 버튼높이));
         
@@ -70,8 +70,8 @@ public class RockScissorsPaper {
             }
         };
         
-        scissorsButton.addActionListener(actionListener);
         rockButton.addActionListener(actionListener);
+        scissorsButton.addActionListener(actionListener);
         paperButton.addActionListener(actionListener);
 
         JPanel computerChoicePanel = new JPanel();
@@ -79,8 +79,8 @@ public class RockScissorsPaper {
         frame.add(computerChoicePanel);
 
         JPanel buttonsPanel = new JPanel();
-        buttonsPanel.add(scissorsButton);
         buttonsPanel.add(rockButton);
+        buttonsPanel.add(scissorsButton);
         buttonsPanel.add(paperButton);
         frame.add(buttonsPanel);
 
