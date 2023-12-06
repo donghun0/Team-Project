@@ -40,7 +40,7 @@ public class DateTry {
     // 점수에 따른 이미지 얻기
     private static ImageIcon getIcon(int score) {
         if (score <= 25) {
-            return new ImageIcon("C://java_member//결과 1.jpg"); // 이미지 1 경로 지정
+            return new ImageIcon("C://java_member//결과 1.jpg"); // GIF 이미지 경로 지정
         } else if (score <= 50) {
             return new ImageIcon("C://java_member//결과 2.jpg"); // 이미지 2 경로 지정
         } else if (score <= 75) {
@@ -50,4 +50,5 @@ public class DateTry {
         }
     }
 }
+
 
