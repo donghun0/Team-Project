@@ -37,7 +37,6 @@ public class MemoryMatchGame {
 
     private void createUI() {
         frame = new JFrame("메모리 매칭 게임");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new BorderLayout());
 
         JPanel gridPanel = new JPanel(new GridLayout(4, 4, 10, 10)); // 4x4 그리드 패널 생성

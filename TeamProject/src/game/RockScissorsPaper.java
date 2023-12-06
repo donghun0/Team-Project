@@ -10,7 +10,6 @@ public class RockScissorsPaper {
 
     public static void startGame() {
         JFrame frame = new JFrame("가위바위보 게임");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
 
         // 이미지 크기를 조정하는 메소드

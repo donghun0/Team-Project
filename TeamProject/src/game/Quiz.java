@@ -29,7 +29,6 @@ public class Quiz {
 
     private void createUI() {
         frame = new JFrame("상식 퀴즈 게임");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new BorderLayout());
 
         questionLabel = new JLabel("퀴즈가 여기에 표시됩니다.", SwingConstants.CENTER);
