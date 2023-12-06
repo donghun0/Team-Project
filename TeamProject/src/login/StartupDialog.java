@@ -13,10 +13,12 @@ public class StartupDialog extends JDialog {
     	super(parent, "농담곰의 우당탕탕 데이트 대작전", true);
 
         JPanel panel = new JPanel(new BorderLayout());
-        ImageIcon icon = new ImageIcon("C:\\Users\\zoezo\\git\\Team-Project\\TeamProject\\img\\image-start.png");
+        ImageIcon originalIcon = new ImageIcon("img/image-start.png");
+        Image originalImage = originalIcon.getImage();
+        Image resizedImage = originalImage.getScaledInstance(720, 720, Image.SCALE_SMOOTH);
+        ImageIcon resizedIcon = new ImageIcon(resizedImage);
 
-        // Create a JLabel for the image
-        JLabel imageLabel = new JLabel(icon);
+        JLabel imageLabel = new JLabel(resizedIcon);
         imageLabel.setHorizontalAlignment(JLabel.CENTER);
 
         // Create a panel for buttons
