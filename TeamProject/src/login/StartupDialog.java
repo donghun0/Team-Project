@@ -13,22 +13,29 @@ public class StartupDialog extends JDialog {
     	super(parent, "농담곰의 우당탕탕 데이트 대작전", true);
 
         JPanel panel = new JPanel(new BorderLayout());
-        ImageIcon originalIcon = new ImageIcon("img/image-start.png");
+        
+        ImageIcon originalIcon = new ImageIcon("img//login//image-start.png");
         Image originalImage = originalIcon.getImage();
         Image resizedImage = originalImage.getScaledInstance(720, 720, Image.SCALE_SMOOTH);
         ImageIcon resizedIcon = new ImageIcon(resizedImage);
 
         JLabel imageLabel = new JLabel(resizedIcon);
-        imageLabel.setHorizontalAlignment(JLabel.CENTER);
+        imageLabel.setLayout(null);
 
-        // Create a panel for buttons
-        JPanel buttonPanel = new JPanel(new GridLayout(1, 2));
-        buttonPanel.add(loginButton);
-        buttonPanel.add(signUpButton);
+        loginButton.setBounds(170, 650, 150, 40);
+        signUpButton.setBounds(430, 650, 150, 40);
+        
+        Font buttonFont = new Font("궁서체", Font.PLAIN, 20);
+        loginButton.setFont(buttonFont);
+        signUpButton.setFont(buttonFont);
 
         // Add components to the main panel
-        panel.add(imageLabel, BorderLayout.CENTER);
-        panel.add(buttonPanel, BorderLayout.SOUTH);
+        imageLabel.add(loginButton);
+        imageLabel.add(signUpButton);
+
+        panel.add(imageLabel);
+        panel.setSize(720, 720); // Set the panel size to match the image size
+   
 
         loginButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -45,7 +52,7 @@ public class StartupDialog extends JDialog {
         });
 
         getContentPane().add(panel);
-        setSize(720, 720);
+        setSize(740, 790);
         setLocationRelativeTo(parent);
     }
 
