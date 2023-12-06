@@ -7,6 +7,8 @@ import login.Homepage;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class GameStart {
 	public static int money = 0; // 돈 축적을 위한 변수
@@ -31,7 +33,16 @@ public class GameStart {
         frame = new JFrame("게임 선택");
         frame.setLayout(new FlowLayout());
         frame.setSize(350, 100);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // 기본 닫기 작업 설정
 
+        // 창이 닫힐 때 frame 변수를 null로 설정
+        frame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+                frame = null;
+            }
+        });
+        
         // 현재 있는 돈 표시
         moneyLabel = new JLabel("현재 돈: " + money + "원");
         frame.add(moneyLabel);
