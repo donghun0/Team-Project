@@ -17,6 +17,7 @@ public class GameStart {
             frame.requestFocus(); // 창에 포커스를 줌
             return;
         }
+        
 
         // 게임 선택 창을 위한 프레임 생성
         frame = new JFrame("게임 선택");
