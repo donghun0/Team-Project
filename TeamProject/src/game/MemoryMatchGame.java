@@ -1,5 +1,7 @@
 package game;
 
+import java.awt.Font;
+import javax.swing.Timer;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -8,6 +10,9 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.Collections;
 import java.util.ArrayList;
+import java.io.File;
+import java.io.IOException;
+import java.awt.FontFormatException;
 
 public class MemoryMatchGame extends JFrame implements ActionListener {
     private ArrayList<Card> cards;
@@ -47,6 +52,20 @@ public class MemoryMatchGame extends JFrame implements ActionListener {
 
         timeLabel = new JLabel("남은 시간: " + remainingTime + "초");
         timeLabel.setHorizontalAlignment(JLabel.CENTER);
+        
+        try {
+            // 폰트 파일 로드
+            Font customFont = Font.createFont(Font.TRUETYPE_FONT, new File("img/neodgm.ttf"));
+
+            // 폰트 크기 설정
+            customFont = customFont.deriveFont(Font.PLAIN, 18);
+
+            // 폰트 설정
+            timeLabel.setFont(customFont);
+        } catch (IOException | FontFormatException ex) {
+            ex.printStackTrace();
+        }
+        
         add(timeLabel, BorderLayout.NORTH);
 
         JPanel cardPanel = new JPanel(new GridLayout(4, 4));
