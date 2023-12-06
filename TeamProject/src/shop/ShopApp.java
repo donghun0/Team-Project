@@ -30,7 +30,6 @@ public class ShopApp extends JFrame {
     public ShopApp() {
         setTitle("상점");
         setSize(500, 400);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         shopPanel = new JPanel();
         shopPanel.setLayout(new BoxLayout(shopPanel, BoxLayout.Y_AXIS));

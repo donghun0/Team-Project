@@ -1,6 +1,10 @@
 package login;
 
 import javax.swing.*;
+
+import game.GameStart;
+import shop.ShopApp;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -27,7 +31,6 @@ public class Homepage extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // 도전 버튼이 클릭되었을 때 수행할 동작
-                JOptionPane.showMessageDialog(null, "도전 버튼이 클릭되었습니다.");
             }
         });
 
@@ -38,7 +41,6 @@ public class Homepage extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // 옷장 버튼이 클릭되었을 때 수행할 동작
-                JOptionPane.showMessageDialog(null, "옷장 버튼이 클릭되었습니다.");
             }
         });
 
@@ -49,7 +51,7 @@ public class Homepage extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // 게임 버튼이 클릭되었을 때 수행할 동작
-                JOptionPane.showMessageDialog(null, "게임 버튼이 클릭되었습니다.");
+                GameStart.main(new String[0]);
             }
         });
 
@@ -61,7 +63,7 @@ public class Homepage extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // 상점 버튼이 클릭되었을 때 수행할 동작
-                JOptionPane.showMessageDialog(null, "상점 버튼이 클릭되었습니다.");
+            	ShopApp.main(new String[0]);
             }
         });
 

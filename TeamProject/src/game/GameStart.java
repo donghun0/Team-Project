@@ -10,7 +10,6 @@ public class GameStart {
     public static void main(String[] args) {
         // 게임 선택 창을 위한 프레임 생성
         JFrame frame = new JFrame("게임 선택");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new FlowLayout());
         frame.setSize(350, 100);
 
