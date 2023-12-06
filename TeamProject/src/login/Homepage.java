@@ -17,16 +17,26 @@ public class Homepage extends JFrame {
         setSize(800, 600);
         setTitle("농담곰 방");
         
+        
+        
        
         // 배경 이미지 설정
-        setContentPane(new JLabel(new ImageIcon("C:\\Users\\user\\Desktop\\프방기말프로젝트\\home.jpeg")));
+
+        ImageIcon backgroundImageIcon = new ImageIcon("C:\\Users\\user\\Desktop\\프방기말프로젝트\\nongdambang.png");
+        Image backgroundImage = backgroundImageIcon.getImage();
+        Image resizedBackgroundImage = backgroundImage.getScaledInstance(800, 600, Image.SCALE_SMOOTH);
+        backgroundImageIcon = new ImageIcon(resizedBackgroundImage);
+        setContentPane(new JLabel(backgroundImageIcon));
+        
+       
 
         // 폰트 설정
         Font font = new Font("NEO둥근모", Font.PLAIN, 20);
 
         // 도전 버튼
         JButton challengeButton = createButton("도전", font);
-        challengeButton.setBounds(690, 100, 80, 30);
+        challengeButton.setBounds(660, 100, 80, 30);
+        challengeButton.setBackground(Color.WHITE);
         challengeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -36,7 +46,8 @@ public class Homepage extends JFrame {
 
         // 옷장 버튼
         JButton closetButton = createButton("옷장", font);
-        closetButton.setBounds(650, 500, 80, 40);
+        closetButton.setBounds(660, 200, 80, 30);
+        closetButton.setBackground(Color.WHITE);
         closetButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -46,7 +57,8 @@ public class Homepage extends JFrame {
 
         // 게임 버튼
         JButton gameButton = createButton("게임", font);
-        gameButton.setBounds(690, 50, 80, 30);
+        gameButton.setBounds(660, 50, 80, 30);
+        gameButton.setBackground(Color.WHITE);
         gameButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -57,7 +69,7 @@ public class Homepage extends JFrame {
 
         // 상점 버튼
         JButton shopButton = createButton("상점", font);
-        shopButton.setBounds(690, 150, 80, 30);
+        shopButton.setBounds(660, 150, 80, 30);
         shopButton.setBackground(Color.WHITE);
         shopButton.addActionListener(new ActionListener() {
             @Override
