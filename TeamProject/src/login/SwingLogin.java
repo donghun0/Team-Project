@@ -33,6 +33,10 @@ public class SwingLogin extends JFrame{
 		idLabel.setHorizontalAlignment(NORMAL);
 		pwLabel.setHorizontalAlignment(NORMAL);
 		
+		Font buttonFont = new Font("궁서체", Font.PLAIN, 15);
+		loginBtn.setFont(buttonFont);
+		memberbtn.setFont(buttonFont);
+		
 		//현재 프레임 창 가운데 정렬 setSize를 먼저 해주어야 정상적으로 프레임이 가운데 정렬이 됨!
 		setSize(350,150);
 		this.setLocationRelativeTo(null);		
