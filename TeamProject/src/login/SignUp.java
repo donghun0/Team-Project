@@ -1,19 +1,19 @@
 package login;
 
+import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 
-import javax.swing.*;
-
 public class SignUp extends JDialog{
 	 private JPanel signUpPanel = new JPanel(new GridLayout(11, 0));
-	 private JTextField idText = new JTextField("아이디");
+	 private JTextField idText = new JTextField("");
 	 private JPasswordField pwText = new JPasswordField();
 	 private JPasswordField pwCheckText = new JPasswordField();
-	 private JTextField nameText = new JTextField("이름");
 	 private JButton signUpbtn = new JButton("회원가입");
+	 private JLabel idlabel = new JLabel("아이디");
 	 private JLabel pwlabel = new JLabel("비밀번호");
 	 private JLabel pwChecklabel = new JLabel("비밀번호 확인");
 	  
@@ -23,51 +23,43 @@ public class SignUp extends JDialog{
 		
 		this.setTitle("회원가입");
 		
+		this.signUpPanel.add(idlabel);
 		this.signUpPanel.add(idText);
 		this.signUpPanel.add(pwlabel);
 		this.signUpPanel.add(pwText);
 		this.signUpPanel.add(pwChecklabel);
 		this.signUpPanel.add(pwCheckText);
-		this.signUpPanel.add(nameText);
 		this.signUpPanel.add(signUpbtn);
 		
 		this.setContentPane(signUpPanel);
 		this.setSize(300,500);				
 		this.setLocationRelativeTo(null);
 
-		FocusEvent();
 		checkValue();
+		
+		// 폰트 파일 경로
+        String fontFilePath = "img/neodgm.ttf";
+
+        try {
+            // 폰트 파일 로드
+            Font customFont = Font.createFont(Font.TRUETYPE_FONT, new java.io.File(fontFilePath));
+
+            // 폰트 크기 설정
+            customFont = customFont.deriveFont(Font.PLAIN, 15);
+
+            // 폰트 설정
+            idlabel.setFont(customFont);
+            idText.setFont(customFont);
+            pwlabel.setFont(customFont);
+            pwText.setFont(customFont);
+            pwChecklabel.setFont(customFont);
+            pwCheckText.setFont(customFont);
+            signUpbtn.setFont(customFont);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            // 폰트 로딩에 실패한 경우 기본 폰트를 사용하거나 에러 처리를 수행할 수 있습니다.
+        }
 	}
-	 
-	 //텍스트 필드에 있는 값을 체크하고 지우기 위한 메소드
-	 private void FocusEvent() {
-			idText.addFocusListener(new FocusListener() {
-				public void focusLost(FocusEvent e) {				
-					if(idText.getText().trim().length()==0) {
-						idText.setText("아이디");
-					}
-				}
-				public void focusGained(FocusEvent e) {				
-					if(idText.getText().trim().equals("아이디")) {
-						idText.setText("");
-					}				
-				}
-			});
-			
-			nameText.addFocusListener(new FocusListener() {
-				public void focusLost(FocusEvent e) {
-					if(nameText.getText().trim().length()==0) {
-						nameText.setText("이름");
-					}
-				}
-				
-				public void focusGained(FocusEvent e) {			
-					if(nameText.getText().trim().equals("이름")) {
-						nameText.setText("");
-					}
-				}
-			});
-	 }
 	 
 	 //회원 가입할때 모든 값이 입력되었는지 체크하기 위한 메소드
 	 private void checkValue(){
@@ -93,12 +85,6 @@ public class SignUp extends JDialog{
 				
 				if(!(pwText.getText().trim().equals(pwCheckText.getText().trim()))) {
 					JOptionPane.showMessageDialog(null, "비밀번호가 같지 않습니다.!!", "비밀번호 확인", JOptionPane.WARNING_MESSAGE);
-					return;
-				}
-				
-				if(nameText.getText().trim().length()==0 || nameText.getText().trim().equals("이름")) {
-					JOptionPane.showMessageDialog(null, "이름을 입력해 주세요.", "이름 입력", JOptionPane.WARNING_MESSAGE);
-					nameText.grabFocus();
 					return;
 				}
 				
@@ -159,10 +145,6 @@ public class SignUp extends JDialog{
 
 	public String getPwCheckText() {
 		return this.pwCheckText.getText().trim();
-	}
-
-	public String getNameText() {
-		return this.nameText.getText().trim();
 	}
 
 	public boolean memberCheck() {
