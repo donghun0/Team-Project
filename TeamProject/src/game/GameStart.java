@@ -9,7 +9,6 @@ public class GameStart {
     private static int money = 0; // 돈 축적을 위한 변수
     private static JLabel moneyLabel;
     private static JFrame frame; // 게임 선택 창을 위한 프레임 변수
-
     public static void main(String[] args) {
         // 이미 열려 있는 게임 선택 창이 있다면, 추가로 창을 생성하지 않고 반환
         if (frame != null) {
