@@ -5,11 +5,23 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class RockScissorsPaper {
 
     public static void startGame() {
         JFrame frame = new JFrame("가위바위보 게임");
+        frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        frame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                // 창이 닫힐 때 실행될 동작
+                frame.dispose(); // 현재 프레임을 닫습니다.
+                openGameSelectionWindow(); // 게임 선택 창을 엽니다.
+            }
+        });
+        
         frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
 
         // 이미지 크기를 조정하는 메소드
@@ -46,7 +58,8 @@ public class RockScissorsPaper {
                 String computerChoice = getComputerChoice();
                 updateComputerChoiceImage(computerChoice, computerChoiceLabel); // 컴퓨터의 선택에 따라 이미지 업데이트
                 String result = determineWinner(playerChoice, computerChoice);
-                resultLabel.setText(result);
+                showResultDialog(result, frame); // 결과 창 표시
+                frame.setVisible(false); // 메인 프레임 숨기기
             }
         };
         
@@ -64,14 +77,40 @@ public class RockScissorsPaper {
         buttonsPanel.add(paperButton);
         frame.add(buttonsPanel);
 
-        JPanel resultPanel = new JPanel(new BorderLayout()); // 결과를 가운데 정렬하기 위한 BorderLayout 사용
-        resultPanel.add(resultLabel, BorderLayout.CENTER); // 결과 라벨을 가운데에 배치
-        frame.add(resultPanel);
-
         frame.pack(); // 컴포넌트에 맞게 프레임 크기 조정
         frame.setVisible(true);
     }
-    
+
+    private static void showResultDialog(String result, JFrame parentFrame) {
+        JDialog resultDialog = new JDialog(parentFrame, "결과", true);
+        resultDialog.setLayout(new FlowLayout());
+        resultDialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+
+        JLabel resultLabel = new JLabel(result);
+        resultDialog.add(resultLabel);
+
+        if (result.equals("재도전!")) {
+            JButton retryButton = new JButton("다시하기");
+            retryButton.addActionListener(e -> {
+                resultDialog.dispose();
+                parentFrame.dispose(); // 기존 프레임 닫기
+                startGame(); // 새 게임 시작
+            });
+            resultDialog.add(retryButton); // 재도전 시 다시하기 버튼 추가
+        } else {
+            JButton closeButton = new JButton("종료");
+            closeButton.addActionListener(e -> {
+                resultDialog.dispose();
+                parentFrame.setVisible(true); // 메인 게임 선택 창을 다시 보여줌
+            });
+            resultDialog.add(closeButton);
+        }
+
+        resultDialog.pack();
+        resultDialog.setLocationRelativeTo(parentFrame);
+        resultDialog.setVisible(true);
+    }
+
     private static void updateComputerChoiceImage(String choice, JLabel label) {
         ImageIcon icon;
         switch (choice) {
@@ -88,14 +127,15 @@ public class RockScissorsPaper {
                 return; // 잘못된 선택인 경우 아무 것도 하지 않음
         }
 
-        Image image = icon.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH); // 이미지 크기를 50x50으로 조정
+        Image image = icon.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
         label.setIcon(new ImageIcon(image));
     }
-    
+
     private static String getComputerChoice() {
         String[] choices = {"가위", "바위", "보"};
         return choices[new Random().nextInt(choices.length)];
     }
+
 
     private static String determineWinner(String playerChoice, String computerChoice) {
         if (playerChoice.equals(computerChoice)) {
@@ -107,5 +147,10 @@ public class RockScissorsPaper {
         } else {
             return "패배!";
         }
+    }
+    
+    private static void openGameSelectionWindow() {
+        // GameStart 클래스의 메인 메서드를 호출하여 게임 선택 창을 엽니다.
+        GameStart.main(null);
     }
 }

@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.List;
 
 public class Quiz {
@@ -29,6 +31,16 @@ public class Quiz {
 
     private void createUI() {
         frame = new JFrame("상식 퀴즈 게임");
+        frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        frame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+            	// 창이 닫힐 때 실행될 동작
+            	frame.dispose(); // 현재 프레임을 닫습니다.
+                openGameSelectionWindow(); // 게임 선택 창을 엽니다.
+            }
+        });
+        
         frame.setLayout(new BorderLayout());
 
         questionLabel = new JLabel("퀴즈가 여기에 표시됩니다.", SwingConstants.CENTER);
@@ -82,13 +94,21 @@ public class Quiz {
     }
     
     private void showFinalResult() {
-        String resultMessage = correctAnswers >= 3 ? "성공! " : "실패! ";
-        resultMessage += "정답 개수: " + correctAnswers + " / 5";
-        questionLabel.setText("퀴즈가 끝났습니다!");
-        feedbackLabel.setText(resultMessage);
-        for (JButton button : answerButtons) {
-            button.setEnabled(false);
+        String resultMessage = (correctAnswers >= 3 ? "성공! " : "실패! ") + 
+                               "정답 개수: " + correctAnswers + " / 5";
+        Object[] options = {"종료"};
+        int option = JOptionPane.showOptionDialog(frame, resultMessage, "퀴즈 종료",
+                                                  JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, 
+                                                  null, options, options[0]);
+
+        if (option == 0) {
+            frame.dispose();
+            openGameSelectionWindow();
         }
+    }
+
+    private void openGameSelectionWindow() {
+    	GameStart.main(null);
     }
 
     public static void main(String[] args) {

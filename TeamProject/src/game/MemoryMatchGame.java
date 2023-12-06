@@ -7,6 +7,8 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class MemoryMatchGame {
     private JFrame frame;
@@ -37,6 +39,16 @@ public class MemoryMatchGame {
 
     private void createUI() {
         frame = new JFrame("메모리 매칭 게임");
+        frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        frame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+            	// 창이 닫힐 때 실행될 동작
+            	frame.dispose(); // 현재 프레임을 닫습니다.
+                openGameSelectionWindow(); // 게임 선택 창을 엽니다.
+            }
+        });
+        
         frame.setLayout(new BorderLayout());
 
         JPanel gridPanel = new JPanel(new GridLayout(4, 4, 10, 10)); // 4x4 그리드 패널 생성
@@ -123,8 +135,22 @@ public class MemoryMatchGame {
 
     private void endGame(boolean isWin) {
         String message = isWin ? "성공! 모든 카드를 맞췄습니다!" : "실패! 시간 초과!";
-        JOptionPane.showMessageDialog(frame, message);
-        frame.dispose();
+        
+        // 결과 메시지와 함께 '종료' 버튼을 포함하는 다이얼로그를 생성합니다.
+        Object[] options = {"종료"};
+        int choice = JOptionPane.showOptionDialog(frame, message, "게임 종료", 
+                                                  JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, 
+                                                  null, options, options[0]);
+
+        if (choice == 0) {
+            frame.dispose();
+            openGameSelectionWindow();
+        }
+    }
+    
+    private void openGameSelectionWindow() {
+        // GameStart 클래스의 메인 메서드를 호출하여 게임 선택 창을 엽니다.
+        GameStart.main(null);
     }
 
     public static void main(String[] args) {
