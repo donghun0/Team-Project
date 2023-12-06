@@ -25,9 +25,23 @@ public class StartupDialog extends JDialog {
         loginButton.setBounds(170, 650, 150, 40);
         signUpButton.setBounds(430, 650, 150, 40);
         
-        Font buttonFont = new Font("궁서체", Font.PLAIN, 20);
-        loginButton.setFont(buttonFont);
-        signUpButton.setFont(buttonFont);
+     // 사용할 폰트 파일 경로
+        String fontFilePath = "img/neodgm.ttf";
+
+        try {
+            // 폰트 파일 로드
+            Font customFont = Font.createFont(Font.TRUETYPE_FONT, new java.io.File(fontFilePath));
+
+            // 폰트 크기 설정
+            customFont = customFont.deriveFont(Font.PLAIN, 20);
+
+            // 폰트 설정
+            loginButton.setFont(customFont);
+            signUpButton.setFont(customFont);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            // 폰트 로딩에 실패한 경우 기본 폰트를 사용하거나 에러 처리를 수행할 수 있습니다.
+        }
 
         // Add components to the main panel
         imageLabel.add(loginButton);
