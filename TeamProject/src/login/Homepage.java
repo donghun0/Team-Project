@@ -17,7 +17,7 @@ public class Homepage extends JFrame {
         setSize(800, 600);
         setTitle("농담곰 방");
         
-        
+
         
        
         // 배경 이미지 설정
