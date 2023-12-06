@@ -2,18 +2,19 @@ package login;
 
 import javax.swing.*;
 import game.GameStart;
+import shop.Closet;
+import shop.ClosetFrame;
 import shop.ShopApp;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Homepage extends JFrame{
-	
+	private Closet closet;
 	private JLabel moneyLabel;
 
-    public Homepage() {
-        // 프레임 초기화
+	public Homepage(Closet closet) {
+        this.closet = closet;
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800, 600);
         setTitle("농담곰 방");
@@ -48,10 +49,12 @@ public class Homepage extends JFrame{
         closetButton.setBounds(660, 200, 80, 30);
         closetButton.setBackground(Color.WHITE);
         closetButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // 옷장 버튼이 클릭되었을 때 수행할 동작
-            }
+        	 @Override
+             public void actionPerformed(ActionEvent e) {
+                 ClosetFrame closetFrame = new ClosetFrame(closet);
+                 closetFrame.setVisible(true);
+                 closetFrame.updateCloset(closet);
+             }
         });
 
         // 게임 버튼
@@ -59,9 +62,8 @@ public class Homepage extends JFrame{
         gameButton.setBounds(660, 50, 80, 30);
         gameButton.setBackground(Color.WHITE);
         gameButton.addActionListener(new ActionListener() {
-            @Override
+        	@Override
             public void actionPerformed(ActionEvent e) {
-                // 게임 버튼이 클릭되었을 때 수행할 동작
                 GameStart.main(new String[0]);
             }
         });
@@ -71,10 +73,10 @@ public class Homepage extends JFrame{
         shopButton.setBounds(660, 150, 80, 30);
         shopButton.setBackground(Color.WHITE);
         shopButton.addActionListener(new ActionListener() {
-            @Override
+        	@Override
             public void actionPerformed(ActionEvent e) {
-                // 상점 버튼이 클릭되었을 때 수행할 동작
-            	ShopApp.main(new String[0]);
+                ShopApp shopApp = ShopApp.getInstance(closet);
+                shopApp.setVisible(true);
             }
         });
         
@@ -107,11 +109,11 @@ public class Homepage extends JFrame{
     }
 
     public static void main(String[] args) {
+        Closet closet = new Closet();
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-            	Homepage homepage = new Homepage();
-               
+                new Homepage(closet);
             }
         });
     }

@@ -43,25 +43,24 @@ public class StartupDialog extends JDialog {
             // 폰트 로딩에 실패한 경우 기본 폰트를 사용하거나 에러 처리를 수행할 수 있습니다.
         }
 
-        // Add components to the main panel
         imageLabel.add(loginButton);
         imageLabel.add(signUpButton);
 
         panel.add(imageLabel);
-        panel.setSize(720, 720); // Set the panel size to match the image size
+        panel.setSize(720, 720); 
    
 
         loginButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                dispose(); // Close the dialog
-                new SwingLogin(); // Open the login window
+                dispose(); 
+                new SwingLogin(); 
             }
         });
 
         signUpButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                dispose(); // Close the dialog
-                new SignUp().setVisible(true); // Open the signup window
+                dispose(); 
+                new SignUp().setVisible(true); 
             }
         });
 

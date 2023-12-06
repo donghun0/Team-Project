@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.*;
 
+import shop.Closet;
+
 public class SwingLogin extends JFrame {
     private JPanel loginPanel = new JPanel(new GridLayout(4, 4));
     private JLabel idLabel = new JLabel("아이디 ");
@@ -16,6 +18,7 @@ public class SwingLogin extends JFrame {
     private JPasswordField pwText = new JPasswordField();
     private JButton loginBtn = new JButton("로그인");
     private JButton memberbtn = new JButton("회원가입");
+    private Closet closet = new Closet();
 
     public SwingLogin() {
         super("로그인 창!");
@@ -89,11 +92,10 @@ public class SwingLogin extends JFrame {
                 if (login.equals("성공")) {
                     JOptionPane.showMessageDialog(null, "로그인 성공", "로그인 확인!", JOptionPane.DEFAULT_OPTION);
 
-                    // Open the Homepage class
-                    Homepage homepage = new Homepage();
+                    Homepage homepage = new Homepage(closet);
                     homepage.setVisible(true);
 
-                    dispose(); // Close the login window
+                    dispose(); 
                     return;
                 } else {
                     JOptionPane.showMessageDialog(null, "로그인 실패", "계정 정보를 확인해 주세요.",
