@@ -158,6 +158,7 @@ public class MemoryMatchGame extends JFrame implements ActionListener {
 
             if (checkGameWon()) {
                 JOptionPane.showMessageDialog(this, "성공! 모든 카드를 맞췄습니다.");
+                GameStart.increaseMoney(700); 
             } else {
                 JOptionPane.showMessageDialog(this, "실패! 시간이 초과되었습니다.");
             }
