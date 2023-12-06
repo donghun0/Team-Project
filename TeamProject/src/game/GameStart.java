@@ -7,6 +7,10 @@ import login.Homepage;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.File;
+import java.io.IOException;
 
 public class GameStart {
 	public static int money = 0; // 돈 축적을 위한 변수
@@ -25,16 +29,42 @@ public class GameStart {
             frame.requestFocus(); // 창에 포커스를 줌
             return;
         }
-        
 
         // 게임 선택 창을 위한 프레임 생성
         frame = new JFrame("게임 선택");
         frame.setLayout(new FlowLayout());
-        frame.setSize(350, 100);
+        frame.setSize(350, 300);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // 기본 닫기 작업 설정
 
-        // 현재 있는 돈 표시
+        // 창이 닫힐 때 frame 변수를 null로 설정
+        frame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+                frame = null;
+            }
+        });
+        
+        // 글꼴 로드
+        try {
+            Font customFont = Font.createFont(Font.TRUETYPE_FONT, new File("img/neodgm.ttf")).deriveFont(14f);
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+            UIManager.put("Button.font", customFont);
+            UIManager.put("Label.font", customFont);
+        } catch (FontFormatException | IOException | ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
+            e.printStackTrace();
+        }
+
+        // 레이아웃 설정
+        frame.setLayout(new BorderLayout());
+        
+        // 현재 돈 표시
         moneyLabel = new JLabel("현재 돈: " + money + "원");
-        frame.add(moneyLabel);
+        moneyLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        frame.add(moneyLabel, BorderLayout.NORTH);
+        
+        // 버튼 패널 생성
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new GridLayout(3, 1)); // 3줄로 버튼 배치
 
         // 가위바위보 게임 버튼
         JButton rockPaperScissorsButton = new JButton("가위바위보");
@@ -63,9 +93,11 @@ public class GameStart {
             }
         });
 
-        frame.add(rockPaperScissorsButton);
-        frame.add(quizButton);
-        frame.add(memoryMatchGameButton);
+        buttonPanel.add(rockPaperScissorsButton);
+        buttonPanel.add(quizButton);
+        buttonPanel.add(memoryMatchGameButton);
+
+        frame.add(buttonPanel, BorderLayout.CENTER);
 
         frame.setVisible(true);
     }
