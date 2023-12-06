@@ -87,11 +87,17 @@ public class SwingLogin extends JFrame{
 				}
 				
 				if(login.equals("성공")) {
-					JOptionPane.showMessageDialog(null, "로그인 성공", "로그인 확인!", JOptionPane.DEFAULT_OPTION);
-					return;
-				}else {
-					JOptionPane.showMessageDialog(null, "로그인 실패", "계정 정보를 확인해 주세요.", JOptionPane.DEFAULT_OPTION);	
-				}
+		            JOptionPane.showMessageDialog(null, "로그인 성공", "로그인 확인!", JOptionPane.DEFAULT_OPTION);
+
+		            // Open the Homepage class
+		            Homepage homepage = new Homepage();
+		            homepage.setVisible(true);
+
+		            dispose(); // Close the login window
+		            return;
+		        } else {
+		            JOptionPane.showMessageDialog(null, "로그인 실패", "계정 정보를 확인해 주세요.", JOptionPane.DEFAULT_OPTION);
+		        }
 				
 			}
 		});

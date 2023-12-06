@@ -13,7 +13,7 @@ public class StartupDialog extends JDialog {
     	super(parent, "농담곰의 우당탕탕 데이트 대작전", true);
 
         JPanel panel = new JPanel(new BorderLayout());
-        ImageIcon icon = new ImageIcon("C:\\java_member\\농담곰.jpg");
+        ImageIcon icon = new ImageIcon("C:\\Users\\zoezo\\git\\Team-Project\\TeamProject\\img\\image-start.png");
 
         // Create a JLabel for the image
         JLabel imageLabel = new JLabel(icon);
@@ -43,7 +43,7 @@ public class StartupDialog extends JDialog {
         });
 
         getContentPane().add(panel);
-        setSize(400, 400);
+        setSize(720, 720);
         setLocationRelativeTo(parent);
     }
 
