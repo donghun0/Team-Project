@@ -87,6 +87,9 @@ public class RockScissorsPaper {
         frame.pack(); // 컴포넌트에 맞게 프레임 크기 조정
         frame.setVisible(true);
     }
+    
+    
+  
 
     private static void showResultDialog(String result, JFrame parentFrame) {
         JDialog resultDialog = new JDialog(parentFrame, "결과", true);
