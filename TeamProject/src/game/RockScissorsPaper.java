@@ -144,6 +144,7 @@ public class RockScissorsPaper {
         } else if ((playerChoice.equals("가위") && computerChoice.equals("보")) ||
                    (playerChoice.equals("바위") && computerChoice.equals("가위")) ||
                    (playerChoice.equals("보") && computerChoice.equals("바위"))) { 
+        	GameStart.increaseMoney(300); 
             return "승리!";
         } else {
             return "패배!";

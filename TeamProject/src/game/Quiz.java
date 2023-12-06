@@ -98,7 +98,7 @@ public class Quiz {
                                "정답 개수: " + correctAnswers + " / 5";
         
         if (correctAnswers >= 3) {
-            updateMoney(500); // Earn 500 won for 3 or more correct answers
+        	updateMoney(500); // Earn 500 won for 3 or more correct answers
             resultMessage += "\n500원을 획득하였습니다!";
         }
         

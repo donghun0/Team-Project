@@ -24,7 +24,7 @@ public class GameStart {
         frame.setSize(350, 100);
 
         // 현재 있는 돈 표시
-        JLabel moneyLabel = new JLabel("현재 돈: " + money + "원");
+        moneyLabel = new JLabel("현재 돈: " + money + "원");
         frame.add(moneyLabel);
 
         // 가위바위보 게임 버튼
@@ -67,6 +67,7 @@ public class GameStart {
         // Check if moneyLabel is null and initialize it if needed
         if (moneyLabel == null) {
             moneyLabel = new JLabel("현재 돈: " + money + "원");
+            frame.add(moneyLabel);
             // Add moneyLabel to the frame or panel where it should be displayed
             // For example, frame.add(moneyLabel);
         } else {
