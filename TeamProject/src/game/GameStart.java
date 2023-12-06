@@ -1,6 +1,9 @@
 package game;
 
 import javax.swing.*;
+
+import login.Homepage;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,6 +12,12 @@ public class GameStart {
 	public static int money = 0; // 돈 축적을 위한 변수
     private static JLabel moneyLabel;
     private static JFrame frame; // 게임 선택 창을 위한 프레임 변수
+    private static Homepage homepage; 
+    
+    public static void setHomepage(Homepage homepage) {
+        GameStart.homepage = homepage;
+    }
+    
     public static void main(String[] args) {
         // 이미 열려 있는 게임 선택 창이 있다면, 추가로 창을 생성하지 않고 반환
         if (frame != null) {
@@ -64,17 +73,21 @@ public class GameStart {
     public static void increaseMoney(int amount) {
         money += amount;
 
-        // Check if moneyLabel is null and initialize it if needed
+        // moneyLabel이 null인지 확인하고 필요한 경우 초기화
         if (moneyLabel == null) {
             moneyLabel = new JLabel("현재 돈: " + money + "원");
             frame.add(moneyLabel);
-            // Add moneyLabel to the frame or panel where it should be displayed
-            // For example, frame.add(moneyLabel);
+            // moneyLabel을 표시해야 하는 프레임 또는 패널에 추가
+            // 예: frame.add(moneyLabel);
         } else {
-            // Update the text if moneyLabel is already initialized
+            // moneyLabel이 이미 초기화된 경우 텍스트 업데이트
             moneyLabel.setText("현재 돈: " + money + "원");
         }
-        
+
+        // Homepage이 사용 가능한 경우 Homepage에서 돈 라벨을 업데이트
+        if (homepage != null) {
+            homepage.updateMoneyLabel();
+        }
     }
     public static int getMoney() {
         return money;

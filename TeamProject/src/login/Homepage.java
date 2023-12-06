@@ -1,6 +1,8 @@
 package login;
 
 import javax.swing.*;
+
+import Challenge.DateTry;
 import game.GameStart;
 import shop.Closet;
 import shop.ClosetFrame;
@@ -40,7 +42,7 @@ public class Homepage extends JFrame{
         challengeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // 도전 버튼이 클릭되었을 때 수행할 동작
+            	DateTry.main(new String[0]);
             }
         });
 
@@ -80,12 +82,13 @@ public class Homepage extends JFrame{
             }
         });
         
-     // Money Label
         moneyLabel = new JLabel("현재 돈: " + GameStart.getMoney() + "원");
         moneyLabel.setForeground(Color.BLACK);
         moneyLabel.setFont(new Font("NEO둥근모", Font.PLAIN, 20));
         moneyLabel.setBounds(660, 250, 150, 30);
         add(moneyLabel);
+        
+        GameStart.setHomepage(this);
 
         // 버튼을 프레임에 추가
         add(challengeButton);
