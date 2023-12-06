@@ -7,8 +7,6 @@ import login.Homepage;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 
 public class GameStart {
 	public static int money = 0; // 돈 축적을 위한 변수
@@ -33,16 +31,7 @@ public class GameStart {
         frame = new JFrame("게임 선택");
         frame.setLayout(new FlowLayout());
         frame.setSize(350, 100);
-        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // 기본 닫기 작업 설정
 
-        // 창이 닫힐 때 frame 변수를 null로 설정
-        frame.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosed(WindowEvent e) {
-                frame = null;
-            }
-        });
-        
         // 현재 있는 돈 표시
         moneyLabel = new JLabel("현재 돈: " + money + "원");
         frame.add(moneyLabel);
@@ -79,6 +68,30 @@ public class GameStart {
         frame.add(memoryMatchGameButton);
 
         frame.setVisible(true);
+    }
+    
+    public static void decreaseMoney(int amount) {
+        money -= amount;
+
+        if (money < 0) {
+            money = 0; // 돈이 음수가 되지 않도록 보정
+        }
+
+        // moneyLabel이 null인지 확인하고 필요한 경우 초기화
+        if (moneyLabel == null) {
+            moneyLabel = new JLabel("현재 돈: " + money + "원");
+            frame.add(moneyLabel);
+            // moneyLabel을 표시해야 하는 프레임 또는 패널에 추가
+            // 예: frame.add(moneyLabel);
+        } else {
+            // moneyLabel이 이미 초기화된 경우 텍스트 업데이트
+            moneyLabel.setText("현재 돈: " + money + "원");
+        }
+
+        // Homepage이 사용 가능한 경우 Homepage에서 돈 라벨을 업데이트
+        if (homepage != null) {
+            homepage.updateMoneyLabel();
+        }
     }
 
     public static void increaseMoney(int amount) {

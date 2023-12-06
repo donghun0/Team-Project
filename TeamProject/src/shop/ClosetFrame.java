@@ -5,7 +5,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,6 +12,7 @@ import java.util.Map;
 public class ClosetFrame extends JFrame {
 
     private Closet closet;
+    private Map<String, Item> wornItems; // 착용 중인 아이템을 저장하는 맵
 
     public ClosetFrame(Closet closet) {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -20,6 +20,7 @@ public class ClosetFrame extends JFrame {
         setTitle("옷장");
 
         this.closet = closet;
+        this.wornItems = new HashMap<>(); // 초기화
 
         updateCloset(closet);
 
@@ -47,7 +48,7 @@ public class ClosetFrame extends JFrame {
             categorizedItems.computeIfAbsent(item.getCategory(), k -> new ArrayList<>()).add(item);
         }
 
-        for (String category : Arrays.asList("헤어", "상의", "하의", "신발", "악세서리")) {
+        for (String category : categorizedItems.keySet()) {
             List<Item> categoryItems = categorizedItems.get(category);
 
             if (categoryItems != null) {
@@ -57,21 +58,21 @@ public class ClosetFrame extends JFrame {
 
                 for (Item item : categoryItems) {
                     JButton itemButton = new JButton(item.getName() + " - $" + item.getPrice());
-                    itemButton.setEnabled(true);
+                    itemButton.setEnabled(!isItemWorn(item));
 
-                    if (item.isWorn()) {
+                    if (isItemWorn(item)) {
                         itemButton.setText(item.getName() + " - 착용 중");
                     }
 
                     itemButton.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
-                            if (item.isWorn()) {
-                                item.setWorn(false);
+                            if (isItemWorn(item)) {
+                                wornItems.remove(item.getCategory());
                             } else {
-                                item.setWorn(true);
+                                wornItems.put(item.getCategory(), item);
                             }
-                            updateCloset(closet); 
+                            updateCloset(closet);
                         }
                     });
 
@@ -81,6 +82,10 @@ public class ClosetFrame extends JFrame {
         }
 
         return closetPanel;
+    }
+
+    private boolean isItemWorn(Item item) {
+        return wornItems.containsValue(item);
     }
 
     public static void main(String[] args) {

@@ -1,6 +1,9 @@
 package shop;
 
 import javax.swing.*;
+
+import game.GameStart;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -67,11 +70,8 @@ public class ShopApp extends JFrame {
         shopPanel = new JPanel();
         shopPanel.setLayout(new BoxLayout(shopPanel, BoxLayout.Y_AXIS));
 
-        addCategory("헤어", 3);
-        addCategory("상의", 3);
-        addCategory("하의", 3);
-        addCategory("신발", 3);
-        addCategory("악세서리", 3);
+        addCategory("옷", 8);
+        addCategory("악세서리", 8);
 
         scrollPane = new JScrollPane(shopPanel);
         add(scrollPane);
@@ -121,12 +121,17 @@ public class ShopApp extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (!item.isSoldOut()) {
-                    item.setSoldOut(true);
-                    updateItemButton(itemButton, item);
-                    selectedItem = item;
-                    closet.addItem(item);
-                    updateClosetFrame();
-                    JOptionPane.showMessageDialog(ShopApp.this, item.getName() + "을(를) 구입했습니다! 가격: $" + item.getPrice());
+                    if (GameStart.getMoney() >= item.getPrice()) {
+                        GameStart.decreaseMoney(item.getPrice()); // 돈 차감
+                        item.setSoldOut(true);
+                        updateItemButton(itemButton, item);
+                        selectedItem = item;
+                        closet.addItem(item);
+                        updateClosetFrame();
+                        JOptionPane.showMessageDialog(ShopApp.this, item.getName() + "을(를) 구입했습니다! 가격: $" + item.getPrice());
+                    } else {
+                        JOptionPane.showMessageDialog(ShopApp.this, "돈이 부족합니다. 현재 돈: $" + GameStart.getMoney());
+                    }
                 } else {
                     JOptionPane.showMessageDialog(ShopApp.this, item.getName() + "은(는) 이미 품절되었습니다.");
                 }
