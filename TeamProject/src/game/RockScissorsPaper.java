@@ -25,9 +25,9 @@ public class RockScissorsPaper {
         frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
 
         // 이미지 크기를 조정하는 메소드
-        ImageIcon scissorsIcon = new ImageIcon("img/scissors.png");
-        ImageIcon rockIcon = new ImageIcon("img/rock.png");
-        ImageIcon paperIcon = new ImageIcon("img/paper.png");
+        ImageIcon scissorsIcon = new ImageIcon("img/game/scissors.png");
+        ImageIcon rockIcon = new ImageIcon("img/game/rock.png");
+        ImageIcon paperIcon = new ImageIcon("img/game/paper.png");
 
         Image scissorsImage = scissorsIcon.getImage().getScaledInstance(70, 70, Image.SCALE_SMOOTH);
         Image rockImage = rockIcon.getImage().getScaledInstance(70, 70, Image.SCALE_SMOOTH);
@@ -115,13 +115,13 @@ public class RockScissorsPaper {
         ImageIcon icon;
         switch (choice) {
             case "가위":
-                icon = new ImageIcon("img/scissors.png");
+                icon = new ImageIcon("img/game/scissors.png");
                 break;
             case "바위":
-                icon = new ImageIcon("img/rock.png");
+                icon = new ImageIcon("img/game/rock.png");
                 break;
             case "보":
-                icon = new ImageIcon("img/paper.png");
+                icon = new ImageIcon("img/game/paper.png");
                 break;
             default:
                 return; // 잘못된 선택인 경우 아무 것도 하지 않음
