@@ -16,10 +16,8 @@ public class ClosetFrame extends JFrame {
 
     public ClosetFrame(Closet closet) {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setSize(1000, 800);
+        setSize(500, 400);
         setTitle("옷장");
-        
-        setLocationRelativeTo(null);
 
         this.closet = closet;
 
@@ -58,18 +56,8 @@ public class ClosetFrame extends JFrame {
                 closetPanel.add(categoryButton);
 
                 for (Item item : categoryItems) {
-                    JPanel itemPanel = new JPanel();  // 패널을 추가하여 이미지와 텍스트를 가로로 배치
-                    itemPanel.setLayout(new BoxLayout(itemPanel, BoxLayout.X_AXIS));
-
-                    // 이미지 표시를 위한 코드
-                    String imagePath = getImagePath(item);
-                    ImageIcon icon = new ImageIcon(imagePath);
-                    JLabel imageLabel = new JLabel(icon);
-                    itemPanel.add(imageLabel);
-
-                    // 텍스트 표시를 위한 코드
-                    JButton itemButton = new JButton(item.getName());
-
+                    JButton itemButton = new JButton(item.getName() + " - $" + item.getPrice());
+                    
                     // Check if the item is worn and set the button text accordingly
                     if (isItemWorn(item)) {
                         itemButton.setText(item.getName() + " - 착용 중");
@@ -87,8 +75,7 @@ public class ClosetFrame extends JFrame {
                         }
                     });
 
-                    itemPanel.add(itemButton);
-                    closetPanel.add(itemPanel);
+                    closetPanel.add(itemButton);
                 }
             }
         }
@@ -96,15 +83,7 @@ public class ClosetFrame extends JFrame {
         return closetPanel;
     }
 
-    private String getImagePath(Item item) {
-        // 이미지 경로를 생성하는 코드 (ShopApp 클래스의 getImagePath 메서드와 유사)
-        String category = item.getCategory();
-        int itemNumber = Integer.parseInt(item.getName().replaceAll("[^0-9]", ""));
-        String imageName = category.toLowerCase() + itemNumber + ".png";
-        return "img/shop/" + imageName;
-    }
-
-    private boolean isItemWorn(Item item) {
+    public boolean isItemWorn(Item item) {
         return wornItems.containsValue(item);
     }
 

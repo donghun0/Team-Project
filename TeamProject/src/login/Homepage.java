@@ -7,9 +7,13 @@ import game.GameStart;
 import shop.Closet;
 import shop.ClosetFrame;
 import shop.ShopApp;
+import shop.Item;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Homepage extends JFrame{
 	private Closet closet;
@@ -67,15 +71,16 @@ public class Homepage extends JFrame{
             }
         });
         
-        // 도전 버튼
+     // 도전 버튼
         JButton challengeButton = createButton("도전", font);
         challengeButton.setBounds(803, 170, 130, 50);
         challengeButton.setBackground(Color.WHITE);
-        challengeButton.setBorderPainted(false); // 버튼 테두리 없애기
+        challengeButton.setBorderPainted(false);
         challengeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-            	DateTry.main(new String[0]);
+                // 옷장 프레임을 열지 않고 바로 도전 시작
+                startChallenge();
             }
         });
 
@@ -130,6 +135,32 @@ public class Homepage extends JFrame{
 
         // 프레임 표시
         setVisible(true);
+    }
+	
+	private void startChallenge() {
+        // 옷장에서 착용 중인 옷과 악세서리를 가져오기
+        List<Item> wornClothes = new ArrayList<>();
+        List<Item> wornAccessories = new ArrayList<>();
+
+        for (Item item : closet.getItems()) {
+            ClosetFrame closetFrame = new ClosetFrame(closet);
+            if (closetFrame.isItemWorn(item)) { // 인스턴스를 사용하여 메서드 호출
+                if ("옷".equals(item.getCategory())) {
+                    wornClothes.add(item);
+                } else if ("악세서리".equals(item.getCategory())) {
+                    wornAccessories.add(item);
+                }
+            }
+        }
+
+        // 두 카테고리 모두에 아이템을 착용했는지 확인
+        if (!wornClothes.isEmpty() && !wornAccessories.isEmpty()) {
+            // 두 카테고리에 모두 아이템을 착용한 경우 도전 시작
+            DateTry.main(new String[0]);
+        } else {
+            // 한 카테고리 이상에서 아이템을 착용하지 않은 경우 메시지 표시
+            JOptionPane.showMessageDialog(Homepage.this, "두 가지 카테고리의 아이템을 모두 착용해야 도전이 가능합니다.");
+        }
     }
     
 	public void updateMoneyLabel() {

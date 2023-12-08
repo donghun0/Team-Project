@@ -10,49 +10,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-class Item {
-    private String name;
-    private int price;
-    private boolean soldOut;
-    private String category;
-    private boolean worn;
-
-    public Item(String name, int price, String category) {
-        this.name = name;
-        this.price = price;
-        this.soldOut = false;
-        this.category = category;
-        this.worn = false;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public boolean isSoldOut() {
-        return soldOut;
-    }
-
-    public boolean isWorn() {
-        return worn;
-    }
-
-    public void setSoldOut(boolean soldOut) {
-        this.soldOut = soldOut;
-    }
-
-    public void setWorn(boolean worn) {
-        this.worn = worn;
-    }
-}
 
 public class ShopApp extends JFrame {
     private JPanel shopPanel;
@@ -65,9 +22,7 @@ public class ShopApp extends JFrame {
         this.closet = closet;
 
         setTitle("상점");
-        setSize(1000, 800);
-        
-        setLocationRelativeTo(null);
+        setSize(500, 400);
 
         shopPanel = new JPanel();
         shopPanel.setLayout(new BoxLayout(shopPanel, BoxLayout.Y_AXIS));
@@ -157,6 +112,7 @@ public class ShopApp extends JFrame {
         String category = item.getCategory();
         int itemNumber = Integer.parseInt(item.getName().replaceAll("[^0-9]", "")); // Extract the item number
 
+        // Assuming you have images named "clothes1.jpg", "clothes2.jpg", "accessory1.jpg", "accessory2.jpg"
         String imageName = category.toLowerCase() + itemNumber + ".png";
         return "img/shop/" + imageName;
     }
@@ -172,16 +128,9 @@ public class ShopApp extends JFrame {
 
     private void updateItemButton(JButton itemButton, Item item) {
         if (item.isSoldOut()) {
-            itemButton.setText("X"); 
-            Font xFont = new Font("NEO둥근모", Font.BOLD, 300); 
-            itemButton.setFont(xFont);
-            itemButton.setEnabled(false);
+            itemButton.setText(item.getName() + " - 품절");
         }
     }
-
-
-
-
 
     public static void main(String[] args) {
         Closet closet = new Closet();
