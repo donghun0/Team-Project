@@ -66,9 +66,13 @@ public class GameStart {
         // 버튼 패널 생성
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(3, 1)); // 3줄로 버튼 배치
+        
 
-        // 가위바위보 게임 버튼
+     // 가위바위보 게임 버튼
         JButton rockPaperScissorsButton = new JButton("가위바위보");
+        rockPaperScissorsButton.setBackground(new Color(135, 206, 250)); // 연한 하늘색
+        rockPaperScissorsButton.setOpaque(true); // 버튼을 불투명하게 설정
+        rockPaperScissorsButton.setBorderPainted(false); // 버튼 테두리를 그리지 않음
         rockPaperScissorsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -78,6 +82,9 @@ public class GameStart {
 
         // 상식 퀴즈 게임 버튼
         JButton quizButton = new JButton("상식 퀴즈");
+        quizButton.setBackground(new Color(144, 238, 144)); // 연한 녹색
+        quizButton.setOpaque(true); // 버튼을 불투명하게 설정
+        quizButton.setBorderPainted(false); // 버튼 테두리를 그리지 않음
         quizButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -87,6 +94,9 @@ public class GameStart {
 
         // 기억력 게임 버튼
         JButton memoryMatchGameButton = new JButton("기억력 게임");
+        memoryMatchGameButton.setBackground(new Color(255, 182, 193)); // 연한 분홍색
+        memoryMatchGameButton.setOpaque(true); // 버튼을 불투명하게 설정
+        memoryMatchGameButton.setBorderPainted(false); // 버튼 테두리를 그리지 않음
         memoryMatchGameButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
