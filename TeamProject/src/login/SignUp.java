@@ -29,10 +29,13 @@ public class SignUp extends JDialog{
 		this.signUpPanel.add(pwText);
 		this.signUpPanel.add(pwChecklabel);
 		this.signUpPanel.add(pwCheckText);
+		
+        signUpbtn.setBackground(new Color(255, 196, 235)); // 연핑크 색상
+
 		this.signUpPanel.add(signUpbtn);
 		
 		this.setContentPane(signUpPanel);
-		this.setSize(300,500);				
+		this.setSize(500,800);				
 		this.setLocationRelativeTo(null);
 
 		checkValue();
@@ -45,7 +48,7 @@ public class SignUp extends JDialog{
             Font customFont = Font.createFont(Font.TRUETYPE_FONT, new java.io.File(fontFilePath));
 
             // 폰트 크기 설정
-            customFont = customFont.deriveFont(Font.PLAIN, 15);
+            customFont = customFont.deriveFont(Font.PLAIN, 30);
 
             // 폰트 설정
             idlabel.setFont(customFont);

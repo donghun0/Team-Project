@@ -12,8 +12,8 @@ import shop.Closet;
 
 public class SwingLogin extends JFrame {
     private JPanel loginPanel = new JPanel(new GridLayout(4, 4));
-    private JLabel idLabel = new JLabel("아이디 ");
-    private JLabel pwLabel = new JLabel("비밀번호 ");
+    private JLabel idLabel = new JLabel("  아이디 ");
+    private JLabel pwLabel = new JLabel(" 비밀번호 ");
     private JTextField idText = new JTextField();
     private JPasswordField pwText = new JPasswordField();
     private JButton loginBtn = new JButton("로그인");
@@ -22,6 +22,15 @@ public class SwingLogin extends JFrame {
 
     public SwingLogin() {
         super("로그인 창!");
+        
+        // 로그인 버튼 색상 변경
+        loginBtn.setBackground(new Color(255, 196, 235)); // 연핑크 색상
+        loginBtn.setOpaque(true);
+
+        // 회원가입 버튼 색상 변경
+        memberbtn.setBackground(new Color(255, 196, 235)); // 연핑크 색상
+        memberbtn.setOpaque(true);
+
 
         this.setContentPane(loginPanel);
         loginPanel.add(idLabel);
@@ -36,7 +45,7 @@ public class SwingLogin extends JFrame {
         pwLabel.setHorizontalAlignment(NORMAL);
 
         // 현재 프레임 창 가운데 정렬
-        setSize(350, 150);
+        setSize(500, 200);
         this.setLocationRelativeTo(null);
 
         this.setVisible(true);
@@ -114,7 +123,7 @@ public class SwingLogin extends JFrame {
                 signup.setVisible(true);
             }
         });
-
+        
         // 폰트 파일 경로
         String fontFilePath = "img/neodgm.ttf";
 
@@ -123,7 +132,7 @@ public class SwingLogin extends JFrame {
             Font customFont = Font.createFont(Font.TRUETYPE_FONT, new java.io.File(fontFilePath));
 
             // 폰트 크기 설정
-            customFont = customFont.deriveFont(Font.PLAIN, 15);
+            customFont = customFont.deriveFont(Font.PLAIN, 30);
 
             // 폰트 설정
             idLabel.setFont(customFont);
@@ -137,8 +146,10 @@ public class SwingLogin extends JFrame {
             // 폰트 로딩에 실패한 경우 기본 폰트를 사용하거나 에러 처리를 수행할 수 있습니다.
         }
     }
-
+    
     public static void main(String[] args) {
         new SwingLogin();
     }
+    
+    
 }

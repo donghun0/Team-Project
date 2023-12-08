@@ -28,7 +28,7 @@ public class StartupDialog extends JDialog {
         loginButton.setBackground(Color.WHITE);
         signUpButton.setBackground(Color.WHITE);
         
-     // 사용할 폰트 파일 경로
+        // 사용할 폰트 파일 경로
         String fontFilePath = "img/neodgm.ttf";
 
         try {
