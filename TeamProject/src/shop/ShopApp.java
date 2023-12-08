@@ -118,10 +118,13 @@ public class ShopApp extends JFrame {
     	String imagePath = getImagePath(item);
 
         ImageIcon icon = new ImageIcon(imagePath);
-        JButton itemButton = new JButton(icon);
+        JButton itemButton = new JButton();
         itemButton.setPreferredSize(new Dimension(270, 270)); // Adjust the size as needed
+
         itemButton.setLayout(new BorderLayout());
+
         itemButton.add(new JLabel(icon), BorderLayout.CENTER);
+
         itemButton.add(new JLabel("  $" + item.getPrice(), SwingConstants.CENTER), BorderLayout.SOUTH);
 
         itemButton.addActionListener(new ActionListener() {
