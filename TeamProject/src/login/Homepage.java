@@ -191,7 +191,7 @@ public class Homepage extends JFrame{
 	            clothImageIcon = new ImageIcon(resizedClothImage);
 
 	            JLabel clothImageLabel = new JLabel(clothImageIcon);
-	            clothImageLabel.setBounds(0, 0, 1000, 750);
+	            clothImageLabel.setBounds(0, 0, 984, 757);
 	            getContentPane().add(clothImageLabel, 0);
 	        }
 	    }
@@ -206,7 +206,7 @@ public class Homepage extends JFrame{
 	            accessoryImageIcon = new ImageIcon(resizedAccessoryImage);
 
 	            JLabel accessoryImageLabel = new JLabel(accessoryImageIcon);
-	            accessoryImageLabel.setBounds(0, 0, 1000, 750);
+	            accessoryImageLabel.setBounds(0, 0, 984, 757);
 	            getContentPane().add(accessoryImageLabel, 0);
 	        }
 	    }
