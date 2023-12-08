@@ -22,8 +22,11 @@ public class StartupDialog extends JDialog {
         JLabel imageLabel = new JLabel(resizedIcon);
         imageLabel.setLayout(null);
 
-        loginButton.setBounds(170, 650, 150, 40);
-        signUpButton.setBounds(430, 650, 150, 40);
+        loginButton.setBounds(100, 640, 250, 80);
+        signUpButton.setBounds(400, 640, 250, 80);
+        
+        loginButton.setBackground(Color.WHITE);
+        signUpButton.setBackground(Color.WHITE);
         
      // 사용할 폰트 파일 경로
         String fontFilePath = "img/neodgm.ttf";
@@ -33,7 +36,7 @@ public class StartupDialog extends JDialog {
             Font customFont = Font.createFont(Font.TRUETYPE_FONT, new java.io.File(fontFilePath));
 
             // 폰트 크기 설정
-            customFont = customFont.deriveFont(Font.PLAIN, 20);
+            customFont = customFont.deriveFont(Font.PLAIN, 50);
 
             // 폰트 설정
             loginButton.setFont(customFont);
