@@ -25,7 +25,7 @@ public class QuestionBank {
         questions.add(new Question("'DNS'의 컴퓨터 용어로서의 의미는 무엇인가요?", new String[]{"Digital Network Service", "Data Number Sequence", "Domain Name System", "Dynamic Net Speed"}, "Domain Name System"));
         questions.add(new Question("인체에서 가장 큰 기관은 무엇인가요?", new String[]{"간", "폐", "심장", "피부"}, "피부"));
         questions.add(new Question("비타민 C가 풍부한 과일은 무엇인가요?", new String[]{"오렌지", "바나나", "복숭아", "포도"}, "오렌지"));
-        questions.add(new Question("'이순신' 장군이 활약한 전쟁은 무엇인가요?", new String[]{"정묘호란", "임진왜란", "병자호란", "청일전쟁"}, "임지왜란"));
+        questions.add(new Question("'이순신' 장군이 활약한 전쟁은 무엇인가요?", new String[]{"정묘호란", "임진왜란", "병자호란", "청일전쟁"}, "임진왜란"));
         questions.add(new Question("'빅벤'이라고 불리는 시계탑이 있는 나라는 어디인가요?", new String[]{"프랑스", "독일", "영국", "이탈리아"}, "영국"));
         questions.add(new Question("셰익스피어의 대표작 중 하나는 무엇인가요?", new String[]{"노인과 바다", "파우스트", "데미안", "햄릿"}, "햄릿"));
         questions.add(new Question("세계 최초의 목판 인쇄술은 어디에서 발명되었나요?", new String[]{"대한민국", "이집트", "중국", "인도"}, "대한민국"));
