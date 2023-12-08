@@ -19,4 +19,14 @@ public class Closet {
     public List<Item> getItems() {
         return new ArrayList<>(items);
     }
+    
+    public List<Item> getWornItems() {
+        List<Item> wornItems = new ArrayList<>();
+        for (Item item : items) {
+            if (item.isWorn()) {
+                wornItems.add(item);
+            }
+        }
+        return wornItems;
+    }
 }

@@ -87,9 +87,11 @@ public class ClosetFrame extends JFrame {
                     itemButton.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
-                            if (isItemWorn(item)) {
+                        	if (isItemWorn(item)) {
+                                item.setWorn(false); // 아이템을 벗었을 때의 상태 업데이트
                                 wornItems.remove(item.getCategory());
                             } else {
+                                item.setWorn(true); // 아이템을 착용했을 때의 상태 업데이트
                                 wornItems.put(item.getCategory(), item);
                             }
                             updateCloset(closet);
