@@ -13,6 +13,7 @@ public class Item {
         this.soldOut = false;
         this.category = category;
         this.worn = false;
+        
     }
 
     public String getName() {
