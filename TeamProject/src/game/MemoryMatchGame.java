@@ -47,8 +47,10 @@ public class MemoryMatchGame extends JFrame implements ActionListener {
 
         setTitle("기억력 게임");
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        setSize(400, 400);
+        setSize(740, 790);
         setLayout(new BorderLayout());
+        setLocationRelativeTo(null);
+
 
         timeLabel = new JLabel("남은 시간: " + remainingTime + "초");
         timeLabel.setHorizontalAlignment(JLabel.CENTER);
@@ -58,7 +60,7 @@ public class MemoryMatchGame extends JFrame implements ActionListener {
             Font customFont = Font.createFont(Font.TRUETYPE_FONT, new File("img/neodgm.ttf"));
 
             // 폰트 크기 설정
-            customFont = customFont.deriveFont(Font.PLAIN, 18);
+            customFont = customFont.deriveFont(Font.PLAIN, 50);
 
             // 폰트 설정
             timeLabel.setFont(customFont);
@@ -93,12 +95,12 @@ public class MemoryMatchGame extends JFrame implements ActionListener {
     private void setUpCards() {
         // 이미지 크기 조정
         ImageIcon backIcon = new ImageIcon("img/game/back.png");
-        backIcon.setImage(backIcon.getImage().getScaledInstance(95, 95, Image.SCALE_SMOOTH));
+        backIcon.setImage(backIcon.getImage().getScaledInstance(180, 180, Image.SCALE_SMOOTH));
 
         for (int i = 1; i <= 8; i++) {
             ImageIcon frontIcon = new ImageIcon("img/game/image" + i + ".png");
             // 이미지 크기 조정
-            frontIcon.setImage(frontIcon.getImage().getScaledInstance(95, 95, Image.SCALE_SMOOTH));
+            frontIcon.setImage(frontIcon.getImage().getScaledInstance(180, 180, Image.SCALE_SMOOTH));
 
             Card c1 = new Card();
             c1.setId(i);
