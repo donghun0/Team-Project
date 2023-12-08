@@ -42,10 +42,6 @@ public class RockScissorsPaper {
         JButton paperButton = new JButton(new ImageIcon(paperImage));
         paperButton.setPreferredSize(new Dimension(버튼너비, 버튼높이));
         
-        JLabel resultLabel = new JLabel("결과가 여기에 표시됩니다.", SwingConstants.CENTER);
-        resultLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        resultLabel.setPreferredSize(new Dimension(700, 700)); // 라벨의 선호 크기 설정
-       
         JLabel computerChoiceLabel = new JLabel(); // 컴퓨터의 선택을 보여줄 라벨
         computerChoiceLabel.setPreferredSize(new Dimension(200, 200)); // 컴퓨터 선택 라벨의 초기 크기 설정
         
@@ -118,7 +114,7 @@ public class RockScissorsPaper {
         }
 
         resultDialog.pack();
-        resultDialog.setSize(200, 180);
+        resultDialog.setSize(270, 180);
         resultDialog.setLocationRelativeTo(parentFrame);
         resultDialog.setVisible(true);
     }
