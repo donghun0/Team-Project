@@ -157,7 +157,6 @@ public class ShopApp extends JFrame {
         String category = item.getCategory();
         int itemNumber = Integer.parseInt(item.getName().replaceAll("[^0-9]", "")); // Extract the item number
 
-        // Assuming you have images named "clothes1.jpg", "clothes2.jpg", "accessory1.jpg", "accessory2.jpg"
         String imageName = category.toLowerCase() + itemNumber + ".png";
         return "img/shop/" + imageName;
     }
