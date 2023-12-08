@@ -22,7 +22,9 @@ public class ShopApp extends JFrame {
         this.closet = closet;
 
         setTitle("상점");
-        setSize(500, 400);
+        setSize(1000, 800);
+        
+        setLocationRelativeTo(null);
 
         shopPanel = new JPanel();
         shopPanel.setLayout(new BoxLayout(shopPanel, BoxLayout.Y_AXIS));
@@ -99,8 +101,6 @@ public class ShopApp extends JFrame {
                     } else {
                         JOptionPane.showMessageDialog(ShopApp.this, "돈이 부족합니다. 현재 돈: $" + GameStart.getMoney());
                     }
-                } else {
-                    JOptionPane.showMessageDialog(ShopApp.this, item.getName() + "은(는) 이미 품절되었습니다.");
                 }
             }
         });
@@ -110,9 +110,8 @@ public class ShopApp extends JFrame {
     
     private String getImagePath(Item item) {
         String category = item.getCategory();
-        int itemNumber = Integer.parseInt(item.getName().replaceAll("[^0-9]", "")); // Extract the item number
+        int itemNumber = Integer.parseInt(item.getName().replaceAll("[^0-9]", "")); 
 
-        // Assuming you have images named "clothes1.jpg", "clothes2.jpg", "accessory1.jpg", "accessory2.jpg"
         String imageName = category.toLowerCase() + itemNumber + ".png";
         return "img/shop/" + imageName;
     }
@@ -128,9 +127,13 @@ public class ShopApp extends JFrame {
 
     private void updateItemButton(JButton itemButton, Item item) {
         if (item.isSoldOut()) {
-            itemButton.setText(item.getName() + " - 품절");
+            Font font = new Font("NEO둥근모", Font.BOLD, 300);
+            itemButton.setFont(font);
+            itemButton.setText("X");
+            itemButton.setEnabled(false);
         }
     }
+
 
     public static void main(String[] args) {
         Closet closet = new Closet();
