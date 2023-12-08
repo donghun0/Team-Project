@@ -44,49 +44,34 @@ public class Quiz {
         });
         
         frame.setLayout(new BorderLayout());
+        
+        // 폰트 설정
+        Font font = new Font("NEO둥근모", Font.PLAIN, 30);
 
         questionLabel = new JLabel("<html><center>퀴즈가 여기에 표시됩니다.</center></html>", SwingConstants.CENTER);
+        questionLabel.setFont(font);
         frame.add(questionLabel, BorderLayout.NORTH);
 
         JPanel answersPanel = new JPanel(new GridLayout(2, 2));
         answerButtons = new JButton[4];
         for (int i = 0; i < 4; i++) {
-            JButton button = new JButton("답변 " + (i + 1));
+            JButton button = new JButton("<html><center>" + "답변 " + (i + 1) + "</center></html>");
+            button.setFont(font);
+            button.setActionCommand("답변 " + (i + 1)); // ActionCommand 설정
             button.addActionListener(this::checkAnswer);
+            Color backgroundColor = new Color(255, 196, 235);
+            button.setBackground(backgroundColor);
+            button.setOpaque(true); // 버튼을 불투명하게 설정
+            
             answerButtons[i] = button;
             answersPanel.add(button);
         }
         frame.add(answersPanel, BorderLayout.CENTER);
 
         feedbackLabel = new JLabel("<html><center>정답 혹은 오답을<br>여기에 표시합니다.</center></html>", SwingConstants.CENTER);
+        feedbackLabel.setFont(font);
         frame.add(feedbackLabel, BorderLayout.SOUTH);
         
-        
-        
-     // 폰트 파일 경로
-        String fontFilePath = "img/neodgm.ttf";
-
-        try {
-            // 폰트 파일 로드
-            Font customFont = Font.createFont(Font.TRUETYPE_FONT, new File(fontFilePath));
-
-            // 폰트 크기 설정
-            customFont = customFont.deriveFont(Font.PLAIN, 50); // 혹시 필요시 폰트 크기 수정
-
-            // 폰트 설정
-            questionLabel.setFont(customFont);
-            feedbackLabel.setFont(customFont);
-            
-
-            for (JButton button : answerButtons) {
-                button.setFont(customFont);
-            }
-
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            // 폰트 로딩에 실패한 경우 기본 폰트를 사용하거나 에러 처리를 수행할 수 있습니다.
-        }
-
         frame.setSize(740, 790);
         frame.setVisible(true);
         frame.setLocationRelativeTo(null);
@@ -109,6 +94,9 @@ public class Quiz {
 
     private void checkAnswer(ActionEvent e) {
         String selectedAnswer = ((JButton) e.getSource()).getText();
+        // HTML 태그 제거
+        selectedAnswer = selectedAnswer.replaceAll("<html><center>", "").replaceAll("</center></html>", "");
+        
         Question currentQuestion = questions.get(currentQuestionIndex - 1);
 
         if (selectedAnswer.equals(currentQuestion.getCorrectAnswer())) {
@@ -118,30 +106,47 @@ public class Quiz {
             feedbackLabel.setText("오답입니다.");
         }
 
-        // 사용자가 답을 선택하면 다음 문제로 넘어감
         nextQuestion();
     }
     
     private void showFinalResult() {
-        String resultMessage = (correctAnswers >= 3 ? "성공! " : "실패! ") + 
+        String resultMessage = "<html><center>" + (correctAnswers >= 3 ? "성공!<br>" : "실패!<br>") +
                                "정답 개수: " + correctAnswers + " / 5";
-        
-        if (correctAnswers >= 3) {
-        	updateMoney(500); // Earn 500 won for 3 or more correct answers
-            resultMessage += "\n500원을 획득하였습니다!";
-        }
-        
-        Object[] options = {"종료"};
-        int option = JOptionPane.showOptionDialog(frame, resultMessage, "퀴즈 종료",
-                                                  JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, 
-                                                  null, options, options[0]);
 
-        if (option == 0) {
-            frame.dispose();
-            openGameSelectionWindow();
+        if (correctAnswers >= 3) {
+            updateMoney(500); // Earn 500 won for 3 or more correct answers
+            resultMessage += "<br>500원을 획득하였습니다!";
         }
+        resultMessage += "</center></html>";
+
+        // 사용자 정의 대화 상자 생성
+        JDialog dialog = new JDialog(frame, "퀴즈 종료", true);
+        dialog.setLayout(new BorderLayout());
+
+        JLabel messageLabel = new JLabel(resultMessage);
+        Font font = new Font("NEO둥근모", Font.PLAIN, 30);
+        messageLabel.setFont(font);
+        dialog.add(messageLabel, BorderLayout.CENTER);
+
+        JButton closeButton = new JButton("종료");
+        closeButton.setFont(font);
+        closeButton.addActionListener(e -> {
+            dialog.dispose(); // 대화 상자를 닫음
+            frame.dispose(); // 상식퀴즈 게임 창을 닫음
+            openGameSelectionWindow(); // 게임 선택 창을 엶
+        });
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.add(closeButton);
+        dialog.add(buttonPanel, BorderLayout.SOUTH);
+
+        // 대화 상자 크기 조절
+        dialog.setPreferredSize(new Dimension(280, 250)); // 원하는 크기로 설정
+        dialog.pack(); // 대화 상자 크기를 내용에 맞게 조정
+        dialog.setLocationRelativeTo(frame); // 부모 창에 대해 중앙에 위치
+        dialog.setVisible(true);
     }
-    
+
+
     private void updateMoney(int amount) {
         GameStart.increaseMoney(amount);
     }

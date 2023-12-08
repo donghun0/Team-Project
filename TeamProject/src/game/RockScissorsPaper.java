@@ -82,6 +82,7 @@ public class RockScissorsPaper {
         frame.pack(); // 컴포넌트에 맞게 프레임 크기 조정
         frame.setVisible(true);
         frame.setSize(740, 790);
+        frame.setBackground(Color.WHITE);
         frame.setLocationRelativeTo(null);
     }
     
