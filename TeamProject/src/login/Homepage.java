@@ -13,33 +13,47 @@ import java.awt.event.ActionListener;
 
 public class Homepage extends JFrame{
 	private Closet closet;
-	private ClosetFrame closetFrame;
-	private JLabel moneyLabel;
+    private JLabel moneyValueLabel;
 
 	public Homepage(Closet closet) {
         this.closet = closet;
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(800, 600);
+        setSize(1000, 800);
         setTitle("농담곰 방");
+        setLocationRelativeTo(null);
+
        
        
         // 배경 이미지 설정
 
         ImageIcon backgroundImageIcon = new ImageIcon("img//login//nongdambang.png");
         Image backgroundImage = backgroundImageIcon.getImage();
-        Image resizedBackgroundImage = backgroundImage.getScaledInstance(800, 600, Image.SCALE_SMOOTH);
+        Image resizedBackgroundImage = backgroundImage.getScaledInstance(1000, 750, Image.SCALE_SMOOTH);
         backgroundImageIcon = new ImageIcon(resizedBackgroundImage);
         setContentPane(new JLabel(backgroundImageIcon));
         
        
 
         // 폰트 설정
-        Font font = new Font("NEO둥근모", Font.PLAIN, 20);
+        Font font = new Font("NEO둥근모", Font.PLAIN, 30);
 
+        // 게임 버튼
+        JButton gameButton = createButton("게임", font);
+        gameButton.setBounds(803, 100, 130, 50);
+        gameButton.setBackground(Color.WHITE);
+        gameButton.setBorderPainted(false); // 버튼 테두리 없애기
+        gameButton.addActionListener(new ActionListener() {
+        	@Override
+            public void actionPerformed(ActionEvent e) {
+                GameStart.main(new String[0]);
+            }
+        });
+        
         // 도전 버튼
         JButton challengeButton = createButton("도전", font);
-        challengeButton.setBounds(660, 100, 80, 30);
+        challengeButton.setBounds(803, 170, 130, 50);
         challengeButton.setBackground(Color.WHITE);
+        challengeButton.setBorderPainted(false); // 버튼 테두리 없애기
         challengeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -47,36 +61,11 @@ public class Homepage extends JFrame{
             }
         });
 
-        // 옷장 버튼
-        JButton closetButton = createButton("옷장", font);
-        closetButton.setBounds(660, 200, 80, 30);
-        closetButton.setBackground(Color.WHITE);
-        closetButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (closetFrame == null || !closetFrame.isVisible()) {
-                    closetFrame = new ClosetFrame(closet);
-                }
-                closetFrame.setVisible(true);
-                closetFrame.updateCloset(closet);
-            }
-        });
-
-        // 게임 버튼
-        JButton gameButton = createButton("게임", font);
-        gameButton.setBounds(660, 50, 80, 30);
-        gameButton.setBackground(Color.WHITE);
-        gameButton.addActionListener(new ActionListener() {
-        	@Override
-            public void actionPerformed(ActionEvent e) {
-                GameStart.main(new String[0]);
-            }
-        });
-
         // 상점 버튼
         JButton shopButton = createButton("상점", font);
-        shopButton.setBounds(660, 150, 80, 30);
+        shopButton.setBounds(803, 240, 130, 50);
         shopButton.setBackground(Color.WHITE);
+        shopButton.setBorderPainted(false); // 버튼 테두리 없애기
         shopButton.addActionListener(new ActionListener() {
         	@Override
             public void actionPerformed(ActionEvent e) {
@@ -85,11 +74,33 @@ public class Homepage extends JFrame{
             }
         });
         
-        moneyLabel = new JLabel("현재 돈: " + GameStart.getMoney() + "원");
-        moneyLabel.setForeground(Color.BLACK);
-        moneyLabel.setFont(new Font("NEO둥근모", Font.PLAIN, 20));
-        moneyLabel.setBounds(660, 250, 150, 30);
-        add(moneyLabel);
+        // 옷장 버튼
+        JButton closetButton = createButton("옷장", font);
+        closetButton.setBounds(803, 310, 130, 50);
+        closetButton.setBackground(Color.WHITE);
+        closetButton.setBorderPainted(false); // 버튼 테두리 없애기
+        closetButton.addActionListener(new ActionListener() {
+        	 @Override
+             public void actionPerformed(ActionEvent e) {
+                 ClosetFrame closetFrame = new ClosetFrame(closet);
+                 closetFrame.setVisible(true);
+                 closetFrame.updateCloset(closet);
+             }
+        });
+        
+        // "현재 돈:" 라벨 생성 및 설정
+        JLabel moneyTextLabel = new JLabel("현재 돈:");
+        moneyTextLabel.setFont(new Font("NEO둥근모", Font.PLAIN, 25));
+        moneyTextLabel.setForeground(Color.BLACK);
+        moneyTextLabel.setBounds(820, 380, 300, 50);
+        add(moneyTextLabel);
+
+        // 실제 금액을 표시하는 라벨 생성 및 설정
+        moneyValueLabel = new JLabel(GameStart.getMoney() + "원"); // 클래스 변수를 사용
+        moneyValueLabel.setFont(new Font("NEO둥근모", Font.PLAIN, 30));
+        moneyValueLabel.setForeground(Color.BLACK);
+        moneyValueLabel.setBounds(840, 420, 300, 50); // 위치 조정
+        add(moneyValueLabel);
         
         GameStart.setHomepage(this);
 
@@ -103,8 +114,10 @@ public class Homepage extends JFrame{
         setVisible(true);
     }
     
-    public void updateMoneyLabel() {
-        moneyLabel.setText("현재 돈: " + GameStart.money + "원");
+	public void updateMoneyLabel() {
+        if (this.moneyValueLabel != null) {
+            this.moneyValueLabel.setText(GameStart.getMoney() + "원");
+        }
     }
 
 
