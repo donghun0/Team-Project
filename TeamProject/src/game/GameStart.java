@@ -33,7 +33,8 @@ public class GameStart {
         // 게임 선택 창을 위한 프레임 생성
         frame = new JFrame("게임 선택");
         frame.setLayout(new FlowLayout());
-        frame.setSize(350, 300);
+        frame.setSize(740, 790);
+        frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // 기본 닫기 작업 설정
 
         // 창이 닫힐 때 frame 변수를 null로 설정
@@ -46,7 +47,7 @@ public class GameStart {
         
         // 글꼴 로드
         try {
-            Font customFont = Font.createFont(Font.TRUETYPE_FONT, new File("img/neodgm.ttf")).deriveFont(14f);
+            Font customFont = Font.createFont(Font.TRUETYPE_FONT, new File("img/neodgm.ttf")).deriveFont(50f);
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
             UIManager.put("Button.font", customFont);
             UIManager.put("Label.font", customFont);
