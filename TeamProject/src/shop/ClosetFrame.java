@@ -13,8 +13,9 @@ public class ClosetFrame extends JFrame {
 
     private Closet closet;
     private static Map<String, Item> wornItems = new HashMap<>(); 
+    private static ClosetFrame instance;
 
-    public ClosetFrame(Closet closet) {
+    private ClosetFrame(Closet closet) {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(500, 400);
         setTitle("옷장");
@@ -24,6 +25,14 @@ public class ClosetFrame extends JFrame {
         updateCloset(closet);
 
         setVisible(true);
+    }
+
+    // 이미 생성된 인스턴스를 반환하는 정적 메서드
+    public static ClosetFrame getInstance(Closet closet) {
+        if (instance == null) {
+            instance = new ClosetFrame(closet);
+        }
+        return instance;
     }
 
     public void updateCloset(Closet closet) {

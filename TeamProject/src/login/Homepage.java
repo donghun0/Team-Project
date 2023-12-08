@@ -97,18 +97,19 @@ public class Homepage extends JFrame{
             }
         });
         
-        // 옷장 버튼
+     // 옷장 버튼 클릭 이벤트 수정
         JButton closetButton = createButton("옷장", font);
         closetButton.setBounds(803, 310, 130, 50);
         closetButton.setBackground(Color.WHITE);
-        closetButton.setBorderPainted(false); // 버튼 테두리 없애기
+        closetButton.setBorderPainted(false);
         closetButton.addActionListener(new ActionListener() {
-        	 @Override
-             public void actionPerformed(ActionEvent e) {
-                 ClosetFrame closetFrame = new ClosetFrame(closet);
-                 closetFrame.setVisible(true);
-                 closetFrame.updateCloset(closet);
-             }
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // 이미 생성된 ClosetFrame 인스턴스를 가져와서 보이도록 함
+                ClosetFrame closetFrame = ClosetFrame.getInstance(closet);
+                closetFrame.setVisible(true);
+                closetFrame.updateCloset(closet);
+            }
         });
         
         // "현재 돈:" 라벨 생성 및 설정
@@ -143,7 +144,7 @@ public class Homepage extends JFrame{
         List<Item> wornAccessories = new ArrayList<>();
 
         for (Item item : closet.getItems()) {
-            ClosetFrame closetFrame = new ClosetFrame(closet);
+            ClosetFrame closetFrame = ClosetFrame.getInstance(closet);
             if (closetFrame.isItemWorn(item)) { // 인스턴스를 사용하여 메서드 호출
                 if ("옷".equals(item.getCategory())) {
                     wornClothes.add(item);
