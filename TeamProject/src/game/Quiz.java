@@ -45,7 +45,7 @@ public class Quiz {
         
         frame.setLayout(new BorderLayout());
 
-        questionLabel = new JLabel("퀴즈가 여기에 표시됩니다.", SwingConstants.CENTER);
+        questionLabel = new JLabel("<html><center>퀴즈가 여기에 표시됩니다.</center></html>", SwingConstants.CENTER);
         frame.add(questionLabel, BorderLayout.NORTH);
 
         JPanel answersPanel = new JPanel(new GridLayout(2, 2));
@@ -58,8 +58,10 @@ public class Quiz {
         }
         frame.add(answersPanel, BorderLayout.CENTER);
 
-        feedbackLabel = new JLabel("정답 혹은 오답을 여기에 표시합니다.", SwingConstants.CENTER);
+        feedbackLabel = new JLabel("<html><center>정답 혹은 오답을<br>여기에 표시합니다.</center></html>", SwingConstants.CENTER);
         frame.add(feedbackLabel, BorderLayout.SOUTH);
+        
+        
         
      // 폰트 파일 경로
         String fontFilePath = "img/neodgm.ttf";
@@ -69,11 +71,12 @@ public class Quiz {
             Font customFont = Font.createFont(Font.TRUETYPE_FONT, new File(fontFilePath));
 
             // 폰트 크기 설정
-            customFont = customFont.deriveFont(Font.PLAIN, 18); // 혹시 필요시 폰트 크기 수정
+            customFont = customFont.deriveFont(Font.PLAIN, 50); // 혹시 필요시 폰트 크기 수정
 
             // 폰트 설정
             questionLabel.setFont(customFont);
             feedbackLabel.setFont(customFont);
+            
 
             for (JButton button : answerButtons) {
                 button.setFont(customFont);
@@ -84,8 +87,9 @@ public class Quiz {
             // 폰트 로딩에 실패한 경우 기본 폰트를 사용하거나 에러 처리를 수행할 수 있습니다.
         }
 
-        frame.setSize(600, 200);
+        frame.setSize(740, 790);
         frame.setVisible(true);
+        frame.setLocationRelativeTo(null);
 
         nextQuestion();
     }
@@ -93,10 +97,10 @@ public class Quiz {
     private void nextQuestion() {
         if (currentQuestionIndex < questions.size()) {
             Question question = questions.get(currentQuestionIndex++);
-            questionLabel.setText(question.getQuestion());
+            questionLabel.setText("<html><center>" + question.getQuestion() + "</center></html>");
 
             for (int i = 0; i < question.getAnswers().length; i++) {
-                answerButtons[i].setText(question.getAnswers()[i]);
+                answerButtons[i].setText("<html><center>" + question.getAnswers()[i] + "</center></html>");
             }
         } else {
         	showFinalResult();
