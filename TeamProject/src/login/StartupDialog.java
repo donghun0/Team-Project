@@ -22,8 +22,8 @@ public class StartupDialog extends JDialog {
         JLabel imageLabel = new JLabel(resizedIcon);
         imageLabel.setLayout(null);
 
-        loginButton.setBounds(100, 640, 250, 80);
-        signUpButton.setBounds(400, 640, 250, 80);
+        loginButton.setBounds(120, 650, 220, 60);
+        signUpButton.setBounds(420, 650, 220, 60);
         
         loginButton.setBackground(Color.WHITE);
         signUpButton.setBackground(Color.WHITE);
@@ -36,7 +36,7 @@ public class StartupDialog extends JDialog {
             Font customFont = Font.createFont(Font.TRUETYPE_FONT, new java.io.File(fontFilePath));
 
             // 폰트 크기 설정
-            customFont = customFont.deriveFont(Font.PLAIN, 50);
+            customFont = customFont.deriveFont(Font.PLAIN, 30);
 
             // 폰트 설정
             loginButton.setFont(customFont);
