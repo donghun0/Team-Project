@@ -65,7 +65,9 @@ public class ShopApp extends JFrame {
         this.closet = closet;
 
         setTitle("상점");
-        setSize(500, 400);
+        setSize(1000, 800);
+        
+        setLocationRelativeTo(null);
 
         shopPanel = new JPanel();
         shopPanel.setLayout(new BoxLayout(shopPanel, BoxLayout.Y_AXIS));
@@ -171,9 +173,16 @@ public class ShopApp extends JFrame {
 
     private void updateItemButton(JButton itemButton, Item item) {
         if (item.isSoldOut()) {
-            itemButton.setText(item.getName() + " - 품절");
+            itemButton.setText("X"); 
+            Font xFont = new Font("NEO둥근모", Font.BOLD, 300); 
+            itemButton.setFont(xFont);
+            itemButton.setEnabled(false);
         }
     }
+
+
+
+
 
     public static void main(String[] args) {
         Closet closet = new Closet();
