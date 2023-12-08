@@ -13,6 +13,7 @@ import java.awt.event.ActionListener;
 
 public class Homepage extends JFrame{
 	private Closet closet;
+	private ClosetFrame closetFrame;
 	private JLabel moneyLabel;
 
 	public Homepage(Closet closet) {
@@ -51,12 +52,14 @@ public class Homepage extends JFrame{
         closetButton.setBounds(660, 200, 80, 30);
         closetButton.setBackground(Color.WHITE);
         closetButton.addActionListener(new ActionListener() {
-        	 @Override
-             public void actionPerformed(ActionEvent e) {
-                 ClosetFrame closetFrame = new ClosetFrame(closet);
-                 closetFrame.setVisible(true);
-                 closetFrame.updateCloset(closet);
-             }
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (closetFrame == null || !closetFrame.isVisible()) {
+                    closetFrame = new ClosetFrame(closet);
+                }
+                closetFrame.setVisible(true);
+                closetFrame.updateCloset(closet);
+            }
         });
 
         // 게임 버튼

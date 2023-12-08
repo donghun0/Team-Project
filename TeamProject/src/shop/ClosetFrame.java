@@ -12,7 +12,7 @@ import java.util.Map;
 public class ClosetFrame extends JFrame {
 
     private Closet closet;
-    private Map<String, Item> wornItems; // 착용 중인 아이템을 저장하는 맵
+    private static Map<String, Item> wornItems = new HashMap<>(); 
 
     public ClosetFrame(Closet closet) {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -20,7 +20,6 @@ public class ClosetFrame extends JFrame {
         setTitle("옷장");
 
         this.closet = closet;
-        this.wornItems = new HashMap<>(); // 초기화
 
         updateCloset(closet);
 
