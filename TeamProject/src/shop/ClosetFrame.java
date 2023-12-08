@@ -25,6 +25,8 @@ public class ClosetFrame extends JFrame {
         setLocationRelativeTo(null);
 
         this.closet = closet;
+        
+        setHomepage(new Homepage(closet));
 
         updateCloset(closet);
 
@@ -45,9 +47,10 @@ public class ClosetFrame extends JFrame {
     public void updateBackgroundImage(Item cloth, Item accessory) {
         // homepage 참조가 null이 아닌지 확인
         if (homepage != null) {
-            homepage.updateBackgroundImageOnItemSelection(cloth);
+            homepage.updateBackgroundImageOnItemSelection(cloth, accessory);
         }
     }
+
 
     public void updateCloset(Closet closet) {
         JPanel closetPanel = createClosetPanel(closet.getItems());
@@ -97,18 +100,25 @@ public class ClosetFrame extends JFrame {
                     itemButton.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
-                            if (isItemWorn(item)) {
+                            boolean wornBefore = isItemWorn(item);
+
+                            if (wornBefore) {
                                 item.setWorn(false);
                                 wornItems.remove(item.getCategory());
-                                updateBackgroundImage(null, null);
                             } else {
                                 item.setWorn(true);
                                 wornItems.put(item.getCategory(), item);
-                                updateBackgroundImage(item, null);
                             }
+
                             updateCloset(closet);
+
+                            // 착용 전 상태와 착용 후 상태가 다를 때만 이미지 업데이트
+                            if (wornBefore != isItemWorn(item)) {
+                                updateBackgroundImage(getLastWornCloth(), getLastWornAccessory());
+                            }
                         }
                     });
+
 
                     itemPanel.add(itemButton);
                     closetPanel.add(itemPanel);
@@ -117,6 +127,26 @@ public class ClosetFrame extends JFrame {
         }
 
         return closetPanel;
+    }
+    
+    private Item getLastWornCloth() {
+        List<Item> wornClothes = new ArrayList<>();
+        for (Item item : closet.getItems()) {
+            if (isItemWorn(item) && "옷".equals(item.getCategory())) {
+                wornClothes.add(item);
+            }
+        }
+        return wornClothes.isEmpty() ? null : wornClothes.get(wornClothes.size() - 1);
+    }
+    
+    private Item getLastWornAccessory() {
+        List<Item> wornAccessories = new ArrayList<>();
+        for (Item item : closet.getItems()) {
+            if (isItemWorn(item) && "악세서리".equals(item.getCategory())) {
+                wornAccessories.add(item);
+            }
+        }
+        return wornAccessories.isEmpty() ? null : wornAccessories.get(wornAccessories.size() - 1);
     }
 
     private String getImagePath(Item item) {

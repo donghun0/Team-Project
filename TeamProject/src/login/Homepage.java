@@ -159,12 +159,7 @@ public class Homepage extends JFrame{
 	    if (!wornClothes.isEmpty() && !wornAccessories.isEmpty()) {
 	        // 두 카테고리에 모두 아이템을 착용한 경우 도전 시작
 	        DateTry dateTry = new DateTry(closet);
-
-	        // 가장 최근에 착용한 옷을 기준으로 이미지 업데이트
-	        Item lastWornCloth = wornClothes.get(wornClothes.size() - 1);
-	        Item lastWornAccessory = wornAccessories.get(wornAccessories.size() - 1);
-	        updateBackgroundImage(lastWornCloth, lastWornAccessory);
-
+	       
 	        SwingUtilities.invokeLater(() -> new Challenge.DateTryFrame(dateTry));
 	    } else {
 	        // 한 카테고리 이상에서 아이템을 착용하지 않은 경우 메시지 표시
@@ -248,8 +243,51 @@ public class Homepage extends JFrame{
         });
     }
 
-	public void updateBackgroundImageOnItemSelection(Item cloth) {
-		// TODO Auto-generated method stub
-		
-	}
+    public void updateBackgroundImageOnItemSelection(Item cloth, Item accessory) {
+        SwingUtilities.invokeLater(() -> {
+            // 기존에 추가된 이미지가 있다면 제거
+            Component[] components = getContentPane().getComponents();
+            for (Component component : components) {
+                if (component instanceof JLabel) {
+                    getContentPane().remove(component);
+                }
+            }
+
+            // 착용한 옷이 있으면 이미지 추가
+            if (cloth != null) {
+                String clothImagePath = getImagePath(cloth);
+                if (clothImagePath != null) {
+                    ImageIcon clothImageIcon = new ImageIcon(clothImagePath);
+                    Image clothImage = clothImageIcon.getImage();
+                    Image resizedClothImage = clothImage.getScaledInstance(1000, 750, Image.SCALE_SMOOTH);
+                    clothImageIcon = new ImageIcon(resizedClothImage);
+
+                    JLabel clothImageLabel = new JLabel(clothImageIcon);
+                    clothImageLabel.setBounds(0, 0, 984, 757);
+                    getContentPane().add(clothImageLabel, 0);
+                }
+            }
+
+            // 착용한 악세서리가 있으면 이미지 추가
+            if (accessory != null) {
+                String accessoryImagePath = getImagePath(accessory);
+                if (accessoryImagePath != null) {
+                    ImageIcon accessoryImageIcon = new ImageIcon(accessoryImagePath);
+                    Image accessoryImage = accessoryImageIcon.getImage();
+                    Image resizedAccessoryImage = accessoryImage.getScaledInstance(1000, 750, Image.SCALE_SMOOTH);
+                    accessoryImageIcon = new ImageIcon(resizedAccessoryImage);
+
+                    JLabel accessoryImageLabel = new JLabel(accessoryImageIcon);
+                    accessoryImageLabel.setBounds(0, 0, 984, 757);
+                    getContentPane().add(accessoryImageLabel, 0);
+                }
+            }
+
+            // 갱신된 내용을 반영
+            revalidate();
+            repaint();
+        });
+    }
+
+
 }
