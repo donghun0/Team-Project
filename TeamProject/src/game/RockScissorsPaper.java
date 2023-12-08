@@ -23,9 +23,8 @@ public class RockScissorsPaper {
         });
         
         frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
-        int 버튼너비 = 200;
-        int 버튼높이 = 200;
-
+        int 버튼너비 = 220;
+        int 버튼높이 = 220;
 
         // 이미지 크기를 조정하는 메소드
         ImageIcon rockIcon = new ImageIcon("img/game/rock.png");
@@ -45,7 +44,7 @@ public class RockScissorsPaper {
         
         JLabel resultLabel = new JLabel("결과가 여기에 표시됩니다.", SwingConstants.CENTER);
         resultLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        resultLabel.setPreferredSize(new Dimension(200, 200)); // 라벨의 선호 크기 설정
+        resultLabel.setPreferredSize(new Dimension(700, 700)); // 라벨의 선호 크기 설정
        
         JLabel computerChoiceLabel = new JLabel(); // 컴퓨터의 선택을 보여줄 라벨
         computerChoiceLabel.setPreferredSize(new Dimension(200, 200)); // 컴퓨터 선택 라벨의 초기 크기 설정
@@ -86,6 +85,8 @@ public class RockScissorsPaper {
 
         frame.pack(); // 컴포넌트에 맞게 프레임 크기 조정
         frame.setVisible(true);
+        frame.setSize(740, 790);
+        frame.setLocationRelativeTo(null);
     }
     
     
@@ -117,6 +118,7 @@ public class RockScissorsPaper {
         }
 
         resultDialog.pack();
+        resultDialog.setSize(200, 180);
         resultDialog.setLocationRelativeTo(parentFrame);
         resultDialog.setVisible(true);
     }
