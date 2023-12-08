@@ -57,8 +57,8 @@ public class ClosetFrame extends JFrame {
 
                 for (Item item : categoryItems) {
                     JButton itemButton = new JButton(item.getName() + " - $" + item.getPrice());
-                    itemButton.setEnabled(!isItemWorn(item));
-
+                    
+                    // Check if the item is worn and set the button text accordingly
                     if (isItemWorn(item)) {
                         itemButton.setText(item.getName() + " - 착용 중");
                     }
@@ -86,6 +86,7 @@ public class ClosetFrame extends JFrame {
     private boolean isItemWorn(Item item) {
         return wornItems.containsValue(item);
     }
+
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
