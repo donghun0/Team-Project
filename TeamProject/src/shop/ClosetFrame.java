@@ -14,7 +14,7 @@ import java.util.Map;
 public class ClosetFrame extends JFrame {
 
     private Closet closet;
-    private static Map<String, Item> wornItems = new HashMap<>();
+    private Map<String, Item> wornItems = new HashMap<>();
     private static ClosetFrame instance;
     private Homepage homepage;
 
@@ -45,7 +45,6 @@ public class ClosetFrame extends JFrame {
     }
 
     public void updateBackgroundImage(Item cloth, Item accessory) {
-        // homepage 참조가 null이 아닌지 확인
         if (homepage != null) {
             homepage.updateBackgroundImageOnItemSelection(cloth, accessory);
         }
@@ -137,6 +136,11 @@ public class ClosetFrame extends JFrame {
             }
         }
         return wornClothes.isEmpty() ? null : wornClothes.get(wornClothes.size() - 1);
+    }
+    public void updateBackgroundImageOnItemPurchase() {
+        SwingUtilities.invokeLater(() -> {
+            updateBackgroundImage(getLastWornCloth(), getLastWornAccessory());
+        });
     }
     
     private Item getLastWornAccessory() {

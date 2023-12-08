@@ -98,7 +98,6 @@ public class Homepage extends JFrame{
             }
         });
         
-     // 옷장 버튼 클릭 이벤트 수정
         JButton closetButton = createButton("옷장", font);
         closetButton.setBounds(803, 310, 130, 50);
         closetButton.setBackground(Color.WHITE);
@@ -106,21 +105,18 @@ public class Homepage extends JFrame{
         closetButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // 이미 생성된 ClosetFrame 인스턴스를 가져와서 보이도록 함
                 ClosetFrame closetFrame = ClosetFrame.getInstance(closet);
                 closetFrame.setVisible(true);
                 closetFrame.updateCloset(closet);
             }
         });
-        
-        // "현재 돈:" 라벨 생성 및 설정
+
         JLabel moneyTextLabel = new JLabel("현재 돈:");
         moneyTextLabel.setFont(new Font("NEO둥근모", Font.PLAIN, 25));
         moneyTextLabel.setForeground(Color.BLACK);
         moneyTextLabel.setBounds(820, 380, 300, 50);
         add(moneyTextLabel);
 
-        // 실제 금액을 표시하는 라벨 생성 및 설정
         moneyValueLabel = new JLabel(GameStart.getMoney() + "원"); // 클래스 변수를 사용
         moneyValueLabel.setFont(new Font("NEO둥근모", Font.PLAIN, 30));
         moneyValueLabel.setForeground(Color.BLACK);
@@ -162,13 +158,11 @@ public class Homepage extends JFrame{
 	       
 	        SwingUtilities.invokeLater(() -> new Challenge.DateTryFrame(dateTry));
 	    } else {
-	        // 한 카테고리 이상에서 아이템을 착용하지 않은 경우 메시지 표시
 	        JOptionPane.showMessageDialog(Homepage.this, "두 가지 카테고리의 아이템을 모두 착용해야 도전이 가능합니다.");
 	    }
 	}
 
 	private void updateBackgroundImage(Item cloth, Item accessory) {
-	    // 기존에 추가된 이미지가 있다면 제거
 	    Component[] components = getContentPane().getComponents();
 	    for (Component component : components) {
 	        if (component instanceof JLabel) {
@@ -206,14 +200,12 @@ public class Homepage extends JFrame{
 	        }
 	    }
 
-	    // 갱신된 내용을 반영
 	    revalidate();
 	    repaint();
 	}
 
 
 	private String getImagePath(Item item) {
-	    // 이미지 경로를 생성하는 코드 (ShopApp 클래스의 getImagePath 메서드와 유사)
 	    String category = item.getCategory();
 	    int itemNumber = Integer.parseInt(item.getName().replaceAll("[^0-9]", ""));
 	    String imageName = category.toLowerCase() + itemNumber + ".png";

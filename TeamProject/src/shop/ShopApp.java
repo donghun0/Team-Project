@@ -144,7 +144,8 @@ public class ShopApp extends JFrame {
         for (Window window : Window.getWindows()) {
             if (window instanceof ClosetFrame) {
                 ClosetFrame closetFrame = (ClosetFrame) window;
-                closetFrame.updateCloset(closet); 
+                closetFrame.updateCloset(closet);
+                closetFrame.updateBackgroundImageOnItemPurchase();  // 새로운 메서드 호출
             }
         }
     }
