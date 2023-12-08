@@ -25,6 +25,7 @@ public class Homepage extends JFrame{
         setSize(1000, 800);
         setTitle("농담곰 방");
         setLocationRelativeTo(null);
+        
 
        
        
@@ -46,9 +47,9 @@ public class Homepage extends JFrame{
 //        JLabel additionalImageLabel = new JLabel(additionalImageIcon);
 //        additionalImageLabel.setBounds(0, 0, 984, 757);
 //        backgroundLabel.add(additionalImageLabel);
-//        
-//        //두번째 이미지-옷으로 설정
-//        ImageIcon additionalImageIcon2 = new ImageIcon("img//login//패딩-메인용.png");
+////        
+////        //두번째 이미지-옷으로 설정
+//        ImageIcon additionalImageIcon2 = new ImageIcon("img//login//옷1.png");
 //        Image additionalImage2 = additionalImageIcon2.getImage();
 //        Image resizedAdditionalImage2 = additionalImage2.getScaledInstance(1000, 750, Image.SCALE_SMOOTH);
 //        additionalImageIcon2 = new ImageIcon(resizedAdditionalImage2);
@@ -145,7 +146,7 @@ public class Homepage extends JFrame{
 
 	    for (Item item : closet.getItems()) {
 	        ClosetFrame closetFrame = ClosetFrame.getInstance(closet);
-	        if (closetFrame.isItemWorn(item)) { // 인스턴스를 사용하여 메서드 호출
+	        if (closetFrame.isItemWorn(item)) {
 	            if ("옷".equals(item.getCategory())) {
 	                wornClothes.add(item);
 	            } else if ("악세서리".equals(item.getCategory())) {
@@ -158,11 +159,70 @@ public class Homepage extends JFrame{
 	    if (!wornClothes.isEmpty() && !wornAccessories.isEmpty()) {
 	        // 두 카테고리에 모두 아이템을 착용한 경우 도전 시작
 	        DateTry dateTry = new DateTry(closet);
+
+	        // 가장 최근에 착용한 옷을 기준으로 이미지 업데이트
+	        Item lastWornCloth = wornClothes.get(wornClothes.size() - 1);
+	        Item lastWornAccessory = wornAccessories.get(wornAccessories.size() - 1);
+	        updateBackgroundImage(lastWornCloth, lastWornAccessory);
+
 	        SwingUtilities.invokeLater(() -> new Challenge.DateTryFrame(dateTry));
 	    } else {
 	        // 한 카테고리 이상에서 아이템을 착용하지 않은 경우 메시지 표시
 	        JOptionPane.showMessageDialog(Homepage.this, "두 가지 카테고리의 아이템을 모두 착용해야 도전이 가능합니다.");
 	    }
+	}
+
+	private void updateBackgroundImage(Item cloth, Item accessory) {
+	    // 기존에 추가된 이미지가 있다면 제거
+	    Component[] components = getContentPane().getComponents();
+	    for (Component component : components) {
+	        if (component instanceof JLabel) {
+	            getContentPane().remove(component);
+	        }
+	    }
+
+	    // 착용한 옷이 있으면 이미지 추가
+	    if (cloth != null) {
+	        String clothImagePath = getImagePath(cloth);
+	        if (clothImagePath != null) {
+	            ImageIcon clothImageIcon = new ImageIcon(clothImagePath);
+	            Image clothImage = clothImageIcon.getImage();
+	            Image resizedClothImage = clothImage.getScaledInstance(1000, 750, Image.SCALE_SMOOTH);
+	            clothImageIcon = new ImageIcon(resizedClothImage);
+
+	            JLabel clothImageLabel = new JLabel(clothImageIcon);
+	            clothImageLabel.setBounds(0, 0, 1000, 750);
+	            getContentPane().add(clothImageLabel, 0);
+	        }
+	    }
+
+	    // 착용한 악세서리가 있으면 이미지 추가
+	    if (accessory != null) {
+	        String accessoryImagePath = getImagePath(accessory);
+	        if (accessoryImagePath != null) {
+	            ImageIcon accessoryImageIcon = new ImageIcon(accessoryImagePath);
+	            Image accessoryImage = accessoryImageIcon.getImage();
+	            Image resizedAccessoryImage = accessoryImage.getScaledInstance(1000, 750, Image.SCALE_SMOOTH);
+	            accessoryImageIcon = new ImageIcon(resizedAccessoryImage);
+
+	            JLabel accessoryImageLabel = new JLabel(accessoryImageIcon);
+	            accessoryImageLabel.setBounds(0, 0, 1000, 750);
+	            getContentPane().add(accessoryImageLabel, 0);
+	        }
+	    }
+
+	    // 갱신된 내용을 반영
+	    revalidate();
+	    repaint();
+	}
+
+
+	private String getImagePath(Item item) {
+	    // 이미지 경로를 생성하는 코드 (ShopApp 클래스의 getImagePath 메서드와 유사)
+	    String category = item.getCategory();
+	    int itemNumber = Integer.parseInt(item.getName().replaceAll("[^0-9]", ""));
+	    String imageName = category.toLowerCase() + itemNumber + ".png";
+	    return "img/login/" + imageName;
 	}
     
 	public void updateMoneyLabel() {
@@ -187,4 +247,9 @@ public class Homepage extends JFrame{
             }
         });
     }
+
+	public void updateBackgroundImageOnItemSelection(Item cloth) {
+		// TODO Auto-generated method stub
+		
+	}
 }

@@ -1,6 +1,8 @@
 package shop;
 
 import javax.swing.*;
+import login.Homepage;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,14 +14,14 @@ import java.util.Map;
 public class ClosetFrame extends JFrame {
 
     private Closet closet;
-    private static Map<String, Item> wornItems = new HashMap<>(); 
+    private static Map<String, Item> wornItems = new HashMap<>();
     private static ClosetFrame instance;
+    private Homepage homepage;
 
     private ClosetFrame(Closet closet) {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(1000, 800);
         setTitle("옷장");
-        
         setLocationRelativeTo(null);
 
         this.closet = closet;
@@ -29,12 +31,22 @@ public class ClosetFrame extends JFrame {
         setVisible(true);
     }
 
-    // 이미 생성된 인스턴스를 반환하는 정적 메서드
+    public void setHomepage(Homepage homepage) {
+        this.homepage = homepage;
+    }
+
     public static ClosetFrame getInstance(Closet closet) {
         if (instance == null) {
             instance = new ClosetFrame(closet);
         }
         return instance;
+    }
+
+    public void updateBackgroundImage(Item cloth, Item accessory) {
+        // homepage 참조가 null이 아닌지 확인
+        if (homepage != null) {
+            homepage.updateBackgroundImageOnItemSelection(cloth);
+        }
     }
 
     public void updateCloset(Closet closet) {
@@ -67,32 +79,32 @@ public class ClosetFrame extends JFrame {
                 closetPanel.add(categoryButton);
 
                 for (Item item : categoryItems) {
-                    JPanel itemPanel = new JPanel();  // 패널을 추가하여 이미지와 텍스트를 가로로 배치
+                    JPanel itemPanel = new JPanel();
                     itemPanel.setLayout(new BoxLayout(itemPanel, BoxLayout.X_AXIS));
 
-                    // 이미지 표시를 위한 코드
                     String imagePath = getImagePath(item);
                     ImageIcon icon = new ImageIcon(imagePath);
                     JLabel imageLabel = new JLabel(icon);
                     itemPanel.add(imageLabel);
 
-                    // 텍스트 표시를 위한 코드
                     JButton itemButton = new JButton(item.getName());
 
-                    // Check if the item is worn and set the button text accordingly
                     if (isItemWorn(item)) {
                         itemButton.setText(item.getName() + " - 착용 중");
+                        updateBackgroundImage(item, null);
                     }
 
                     itemButton.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
-                        	if (isItemWorn(item)) {
-                                item.setWorn(false); // 아이템을 벗었을 때의 상태 업데이트
+                            if (isItemWorn(item)) {
+                                item.setWorn(false);
                                 wornItems.remove(item.getCategory());
+                                updateBackgroundImage(null, null);
                             } else {
-                                item.setWorn(true); // 아이템을 착용했을 때의 상태 업데이트
+                                item.setWorn(true);
                                 wornItems.put(item.getCategory(), item);
+                                updateBackgroundImage(item, null);
                             }
                             updateCloset(closet);
                         }
@@ -107,25 +119,23 @@ public class ClosetFrame extends JFrame {
         return closetPanel;
     }
 
-    
     private String getImagePath(Item item) {
-        // 이미지 경로를 생성하는 코드 (ShopApp 클래스의 getImagePath 메서드와 유사)
         String category = item.getCategory();
         int itemNumber = Integer.parseInt(item.getName().replaceAll("[^0-9]", ""));
         String imageName = category.toLowerCase() + itemNumber + ".png";
         return "img/shop/" + imageName;
     }
 
-
     public boolean isItemWorn(Item item) {
         return wornItems.containsValue(item);
     }
 
-
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             Closet closet = new Closet();
-            new ClosetFrame(closet);
+            ClosetFrame closetFrame = new ClosetFrame(closet);
+            Homepage homepage = new Homepage(closet);
+            closetFrame.setHomepage(homepage);
         });
     }
 }
