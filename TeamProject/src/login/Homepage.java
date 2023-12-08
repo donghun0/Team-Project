@@ -30,9 +30,27 @@ public class Homepage extends JFrame{
         Image backgroundImage = backgroundImageIcon.getImage();
         Image resizedBackgroundImage = backgroundImage.getScaledInstance(1000, 750, Image.SCALE_SMOOTH);
         backgroundImageIcon = new ImageIcon(resizedBackgroundImage);
-        setContentPane(new JLabel(backgroundImageIcon));
-        
-       
+        JLabel backgroundLabel = new JLabel(backgroundImageIcon);
+        backgroundLabel.setBounds(0, 0, 1000, 750);
+        setContentPane(backgroundLabel);
+
+//        // 추가 이미지 설정-악세서리로 설정
+//        ImageIcon additionalImageIcon = new ImageIcon("img//login//목도리-메인용.png");
+//        Image additionalImage = additionalImageIcon.getImage();
+//        Image resizedAdditionalImage = additionalImage.getScaledInstance(1000, 750, Image.SCALE_SMOOTH);
+//        additionalImageIcon = new ImageIcon(resizedAdditionalImage);
+//        JLabel additionalImageLabel = new JLabel(additionalImageIcon);
+//        additionalImageLabel.setBounds(0, 0, 984, 757);
+//        backgroundLabel.add(additionalImageLabel);
+//        
+//        //두번째 이미지-옷으로 설정
+//        ImageIcon additionalImageIcon2 = new ImageIcon("img//login//패딩-메인용.png");
+//        Image additionalImage2 = additionalImageIcon2.getImage();
+//        Image resizedAdditionalImage2 = additionalImage2.getScaledInstance(1000, 750, Image.SCALE_SMOOTH);
+//        additionalImageIcon2 = new ImageIcon(resizedAdditionalImage2);
+//        JLabel additionalImageLabel2 = new JLabel(additionalImageIcon2);
+//        additionalImageLabel2.setBounds(0, 0, 984, 757);
+//        backgroundLabel.add(additionalImageLabel2);
 
         // 폰트 설정
         Font font = new Font("NEO둥근모", Font.PLAIN, 30);
