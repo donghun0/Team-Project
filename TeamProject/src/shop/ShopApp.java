@@ -25,6 +25,10 @@ public class ShopApp extends JFrame {
         setSize(1000, 800);
         
         setLocationRelativeTo(null);
+        
+        Font defaultFont = new Font("NEO둥근모", Font.BOLD, 30); // Adjust the font size and style as needed
+        UIManager.put("Button.font", defaultFont);
+        UIManager.put("Label.font", defaultFont);
 
         shopPanel = new JPanel();
         shopPanel.setLayout(new BoxLayout(shopPanel, BoxLayout.Y_AXIS));
@@ -41,6 +45,18 @@ public class ShopApp extends JFrame {
 
         selectedItem = null;
     }
+    
+    private void setFontRecursively(Container container, Font font) {
+        for (Component component : container.getComponents()) {
+            if (component instanceof Container) {
+                setFontRecursively((Container) component, font);
+            } else if (component instanceof JButton || component instanceof JLabel || component instanceof JComponent) {
+                ((JComponent) component).setFont(font);
+            }
+        }
+    }
+    
+    
 
     public static ShopApp getInstance(Closet closet) {
         if (instance == null) {
@@ -80,6 +96,11 @@ public class ShopApp extends JFrame {
         JButton itemButton = new JButton();
         itemButton.setPreferredSize(new Dimension(270, 270)); // Adjust the size as needed
 
+        itemButton.setBackground(Color.WHITE);
+        
+        Font defaultFont = new Font("NEO둥근모", Font.BOLD, 30); // Adjust the font size as needed
+        itemButton.setFont(defaultFont);
+        
         itemButton.setLayout(new BorderLayout());
 
         itemButton.add(new JLabel(icon), BorderLayout.CENTER);
@@ -89,6 +110,9 @@ public class ShopApp extends JFrame {
         itemButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+            	itemButton.setBackground(Color.WHITE);
+            	 itemButton.setFont(defaultFont);
+
                 if (!item.isSoldOut()) {
                     if (GameStart.getMoney() >= item.getPrice()) {
                         GameStart.decreaseMoney(item.getPrice()); // 돈 차감
