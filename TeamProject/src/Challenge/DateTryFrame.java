@@ -12,7 +12,7 @@ public class DateTryFrame extends JFrame {
 
     public DateTryFrame(DateTry dateTry) {
         this.dateTry = dateTry;
-        setSize(500, 500);
+        setSize(400, 400);
         setLayout(new FlowLayout());
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -20,7 +20,6 @@ public class DateTryFrame extends JFrame {
         scoreLabel = new JLabel();
         feedbackLabel = new JLabel();
         
-        System.out.println("DateTryFrame constructor called");
         updateFeedback();
 
         add(scoreLabel);
@@ -32,13 +31,8 @@ public class DateTryFrame extends JFrame {
     }
 
     private void updateFeedback() {
-        System.out.println("Updating feedback");
-
         int score = dateTry.calculateScore();
         String feedback = dateTry.getFeedback(score);
-        
-        System.out.println("Score: " + score);
-
 
         scoreLabel.setText("점수: " + score);
         feedbackLabel.setText("피드백: " + feedback);
