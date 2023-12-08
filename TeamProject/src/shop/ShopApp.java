@@ -115,7 +115,14 @@ public class ShopApp extends JFrame {
     }
 
     private void addItem(JPanel categoryPanel, Item item) {
-        JButton itemButton = new JButton(item.getName() + " - $" + item.getPrice());
+    	String imagePath = getImagePath(item);
+
+        ImageIcon icon = new ImageIcon(imagePath);
+        JButton itemButton = new JButton(icon);
+        itemButton.setPreferredSize(new Dimension(270, 270)); // Adjust the size as needed
+        itemButton.setLayout(new BorderLayout());
+        itemButton.add(new JLabel(icon), BorderLayout.CENTER);
+        itemButton.add(new JLabel("  $" + item.getPrice(), SwingConstants.CENTER), BorderLayout.SOUTH);
 
         itemButton.addActionListener(new ActionListener() {
             @Override
@@ -139,6 +146,15 @@ public class ShopApp extends JFrame {
         });
 
         categoryPanel.add(itemButton);
+    }
+    
+    private String getImagePath(Item item) {
+        String category = item.getCategory();
+        int itemNumber = Integer.parseInt(item.getName().replaceAll("[^0-9]", "")); // Extract the item number
+
+        // Assuming you have images named "clothes1.jpg", "clothes2.jpg", "accessory1.jpg", "accessory2.jpg"
+        String imageName = category.toLowerCase() + itemNumber + ".png";
+        return "img/shop/" + imageName;
     }
 
     private void updateClosetFrame() {
