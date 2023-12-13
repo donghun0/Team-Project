@@ -13,7 +13,6 @@ public class QuestionBank {
     }
 
     private void loadQuestions() {
-        // 퀴즈 질문 계속 추가
         questions.add(new Question("보통 'DNA'의 구조는 어떤 형태로 묘사되나요?", new String[]{"나선형", "원형", "사각형", "이중나선형"}, "이중나선형"));
         questions.add(new Question("태양계에서 가장 큰 행성은 무엇인가요?", new String[]{"지구", "목성", "토성", "천왕성"}, "목성"));
         questions.add(new Question("피타고라스 정리는 어떤 도형과 관련이 있나요?", new String[]{"직각삼각형", "정사각형", "원", "직사각형"}, "직각삼각형"));
@@ -45,7 +44,7 @@ public class QuestionBank {
         questions.add(new Question("올림픽에서 금메달은 주로 어떤 금속으로 만들어지나요?", new String[]{"금", "은", "동", "플래티넘"}, "은"));
         questions.add(new Question("'마하' 단위는 무엇을 측정하는 데 사용되나요?", new String[]{"압력", "온도", "속도", "높이"}, "속도"));
 
-        //30개...
+        //30개
     }
 
     public List<Question> getRandomQuestions(int numberOfQuestions) {

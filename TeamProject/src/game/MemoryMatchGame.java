@@ -24,7 +24,7 @@ public class MemoryMatchGame extends JFrame implements ActionListener {
     private int remainingTime = 40;
     private JLabel timeLabel;
     private Timer timer;
-    private boolean gameEnded = false; // 게임 종료 여부를 나타내는 변수 추가
+    private boolean gameEnded = false;
     
     public MemoryMatchGame() {
         this.cards = new ArrayList<>();
@@ -56,13 +56,8 @@ public class MemoryMatchGame extends JFrame implements ActionListener {
         timeLabel.setHorizontalAlignment(JLabel.CENTER);
         
         try {
-            // 폰트 파일 로드
             Font customFont = Font.createFont(Font.TRUETYPE_FONT, new File("img/neodgm.ttf"));
-
-            // 폰트 크기 설정
             customFont = customFont.deriveFont(Font.PLAIN, 50);
-
-            // 폰트 설정
             timeLabel.setFont(customFont);
         } catch (IOException | FontFormatException ex) {
             ex.printStackTrace();
@@ -81,11 +76,10 @@ public class MemoryMatchGame extends JFrame implements ActionListener {
 
         timer.start();
 
-        // 창 닫기 이벤트 처리
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                timer.stop(); // 창 닫을 때 타이머 중지
+                timer.stop();
                 returnToGameStart();
                 dispose();
             }
@@ -93,13 +87,11 @@ public class MemoryMatchGame extends JFrame implements ActionListener {
     }
 
     private void setUpCards() {
-        // 이미지 크기 조정
         ImageIcon backIcon = new ImageIcon("img/game/back.png");
         backIcon.setImage(backIcon.getImage().getScaledInstance(180, 180, Image.SCALE_SMOOTH));
 
         for (int i = 1; i <= 8; i++) {
             ImageIcon frontIcon = new ImageIcon("img/game/image" + i + ".png");
-            // 이미지 크기 조정
             frontIcon.setImage(frontIcon.getImage().getScaledInstance(180, 180, Image.SCALE_SMOOTH));
 
             Card c1 = new Card();
@@ -173,13 +165,12 @@ public class MemoryMatchGame extends JFrame implements ActionListener {
     private void endGame() {
         timer.stop();
 
-        // 게임 종료 여부를 확인하고 한 번만 결과를 표시
         if (!gameEnded) {
-            gameEnded = true; // 게임 종료 상태로 설정
+            gameEnded = true;
 
             if (checkGameWon()) {
-                JOptionPane.showMessageDialog(this, "성공! 모든 카드를 맞췄습니다.");
-                GameStart.increaseMoney(700); 
+                JOptionPane.showMessageDialog(this, "성공! 30원을 획득했습니다.");
+                GameStart.increaseMoney(30); 
             } else {
                 JOptionPane.showMessageDialog(this, "실패! 시간이 초과되었습니다.");
             }

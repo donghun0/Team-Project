@@ -37,9 +37,8 @@ public class Quiz {
         frame.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-            	// 창이 닫힐 때 실행될 동작
-            	frame.dispose(); // 현재 프레임을 닫습니다.
-                openGameSelectionWindow(); // 게임 선택 창을 엽니다.
+            	frame.dispose();
+                openGameSelectionWindow();
             }
         });
         
@@ -114,12 +113,11 @@ public class Quiz {
                                "정답 개수: " + correctAnswers + " / 5";
 
         if (correctAnswers >= 3) {
-            updateMoney(500); // Earn 500 won for 3 or more correct answers
-            resultMessage += "<br>500원을 획득하였습니다!";
+            updateMoney(20);
+            resultMessage += "<br>20원을 획득하였습니다!";
         }
         resultMessage += "</center></html>";
-
-        // 사용자 정의 대화 상자 생성
+     
         JDialog dialog = new JDialog(frame, "퀴즈 종료", true);
         dialog.setLayout(new BorderLayout());
 

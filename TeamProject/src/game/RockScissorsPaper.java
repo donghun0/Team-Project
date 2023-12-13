@@ -16,9 +16,8 @@ public class RockScissorsPaper {
         frame.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                // 창이 닫힐 때 실행될 동작
-                frame.dispose(); // 현재 프레임을 닫습니다.
-                openGameSelectionWindow(); // 게임 선택 창을 엽니다.
+                frame.dispose(); 
+                openGameSelectionWindow(); 
             }
         });
         
@@ -26,7 +25,7 @@ public class RockScissorsPaper {
         int 버튼너비 = 220;
         int 버튼높이 = 220;
 
-        // 이미지 크기를 조정하는 메소드
+        
         ImageIcon rockIcon = new ImageIcon("img/game/rock.png");
         ImageIcon scissorsIcon = new ImageIcon("img/game/scissor.png");
         ImageIcon paperIcon = new ImageIcon("img/game/paper.png");
@@ -42,8 +41,8 @@ public class RockScissorsPaper {
         JButton paperButton = new JButton(new ImageIcon(paperImage));
         paperButton.setPreferredSize(new Dimension(버튼너비, 버튼높이));
         
-        JLabel computerChoiceLabel = new JLabel(); // 컴퓨터의 선택을 보여줄 라벨
-        computerChoiceLabel.setPreferredSize(new Dimension(200, 200)); // 컴퓨터 선택 라벨의 초기 크기 설정
+        JLabel computerChoiceLabel = new JLabel(); 
+        computerChoiceLabel.setPreferredSize(new Dimension(200, 200)); 
         
         ActionListener actionListener = new ActionListener() {
             @Override
@@ -57,11 +56,11 @@ public class RockScissorsPaper {
                     playerChoice = "보";
                 }
                 String computerChoice = getComputerChoice();
-                updateComputerChoiceImage(computerChoice, computerChoiceLabel); // 컴퓨터의 선택에 따라 이미지 업데이트
+                updateComputerChoiceImage(computerChoice, computerChoiceLabel); 
                 
                 String result = determineWinner(playerChoice, computerChoice);
-                showResultDialog(result, frame); // 결과 창 표시
-                frame.setVisible(false); // 메인 프레임 숨기기
+                showResultDialog(result, frame); 
+                frame.setVisible(false); 
             }
         };
         
@@ -79,7 +78,7 @@ public class RockScissorsPaper {
         buttonsPanel.add(paperButton);
         frame.add(buttonsPanel);
 
-        frame.pack(); // 컴포넌트에 맞게 프레임 크기 조정
+        frame.pack(); 
         frame.setVisible(true);
         frame.setSize(740, 790);
         frame.setBackground(Color.WHITE);
@@ -101,15 +100,15 @@ public class RockScissorsPaper {
             JButton retryButton = new JButton("다시하기");
             retryButton.addActionListener(e -> {
                 resultDialog.dispose();
-                parentFrame.dispose(); // 기존 프레임 닫기
-                startGame(); // 새 게임 시작
+                parentFrame.dispose(); 
+                startGame(); 
             });
-            resultDialog.add(retryButton); // 재도전 시 다시하기 버튼 추가
+            resultDialog.add(retryButton); 
         } else {
             JButton closeButton = new JButton("종료");
             closeButton.addActionListener(e -> {
                 resultDialog.dispose();
-                parentFrame.setVisible(true); // 메인 게임 선택 창을 다시 보여줌
+                parentFrame.setVisible(true); 
             });
             resultDialog.add(closeButton);
         }
@@ -133,7 +132,7 @@ public class RockScissorsPaper {
                 icon = new ImageIcon("img/game/paper.png");
                 break;
             default:
-                return; // 잘못된 선택인 경우 아무 것도 하지 않음
+                return; 
         }
 
         Image image = icon.getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH);
@@ -152,7 +151,7 @@ public class RockScissorsPaper {
         } else if ((playerChoice.equals("가위") && computerChoice.equals("보")) ||
                    (playerChoice.equals("바위") && computerChoice.equals("가위")) ||
                    (playerChoice.equals("보") && computerChoice.equals("바위"))) { 
-        	GameStart.increaseMoney(100); 
+        	GameStart.increaseMoney(10); 
             return "승리!";
         } else {
             return "패배!";
@@ -160,7 +159,6 @@ public class RockScissorsPaper {
     }
     
     private static void openGameSelectionWindow() {
-        // GameStart 클래스의 메인 메서드를 호출하여 게임 선택 창을 엽니다.
         GameStart.main(null);
     }
 }
