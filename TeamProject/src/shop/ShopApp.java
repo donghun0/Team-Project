@@ -3,6 +3,7 @@ package shop;
 import javax.swing.*;
 
 import game.GameStart;
+import login.Homepage;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -146,6 +147,11 @@ public class ShopApp extends JFrame {
                 ClosetFrame closetFrame = (ClosetFrame) window;
                 closetFrame.updateCloset(closet);
                 closetFrame.updateBackgroundImageOnItemPurchase();  // 새로운 메서드 호출
+                
+                if (Homepage.class.isInstance(closetFrame.getOwner())) {
+                    Homepage homepage = (Homepage) closetFrame.getOwner();
+                    homepage.updateMoneyLabel();
+                }
             }
         }
     }

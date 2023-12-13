@@ -112,15 +112,16 @@ public class ClosetFrame extends JFrame {
                             updateCloset(closet);
 
                             // 착용 전 상태와 착용 후 상태가 다를 때만 이미지 업데이트
-                            if (wornBefore != isItemWorn(item)) {
-                                updateBackgroundImage(getLastWornCloth(), getLastWornAccessory());
-                            }
+                            updateBackgroundImage(getLastWornCloth(), getLastWornAccessory());
+                 
+                        
                         }
                     });
 
 
                     itemPanel.add(itemButton);
                     closetPanel.add(itemPanel);
+                    homepage.updateMoneyLabel();
                 }
             }
         }

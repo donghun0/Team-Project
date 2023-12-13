@@ -237,14 +237,6 @@ public class Homepage extends JFrame{
 
     public void updateBackgroundImageOnItemSelection(Item cloth, Item accessory) {
         SwingUtilities.invokeLater(() -> {
-            // 기존에 추가된 이미지가 있다면 제거
-            Component[] components = getContentPane().getComponents();
-            for (Component component : components) {
-                if (component instanceof JLabel) {
-                    getContentPane().remove(component);
-                }
-            }
-
             // 착용한 옷이 있으면 이미지 추가
             if (cloth != null) {
                 String clothImagePath = getImagePath(cloth);
@@ -280,6 +272,7 @@ public class Homepage extends JFrame{
             repaint();
         });
     }
+
 
 
 }
