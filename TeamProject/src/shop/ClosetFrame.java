@@ -20,12 +20,9 @@ public class ClosetFrame extends JFrame {
 
     private ClosetFrame(Closet closet) {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setSize(600, 700);
+        setSize(1000, 700);
         setTitle("옷장");
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        int xPos = 50; 
-        int yPos = (int) ((screenSize.getHeight() - getHeight()) / 2);
-        setLocation(xPos, yPos);
+        setLocationRelativeTo(null);
 
         this.closet = closet;
         
