@@ -19,6 +19,7 @@ public class Homepage extends JFrame{
     private static Homepage instance;
 	private Closet closet;
     private JLabel moneyValueLabel;
+    private JLabel moneyTextLabel;
 
 	public Homepage(Closet closet) {
         this.closet = closet;
@@ -87,7 +88,7 @@ public class Homepage extends JFrame{
             }
         });
 
-        JLabel moneyTextLabel = new JLabel("현재 돈:");
+        moneyTextLabel = new JLabel("현재 돈:");
         moneyTextLabel.setFont(new Font("NEO둥근모", Font.PLAIN, 25));
         moneyTextLabel.setForeground(Color.BLACK);
         moneyTextLabel.setBounds(820, 380, 300, 50);
@@ -214,9 +215,9 @@ public class Homepage extends JFrame{
 
     public void updateBackgroundImageOnItemSelection(Item cloth, Item accessory) {
         SwingUtilities.invokeLater(() -> {
-            Component[] components = getContentPane().getComponents();
+        	Component[] components = getContentPane().getComponents();
             for (Component component : components) {
-                if (component instanceof JLabel) {
+                if (component instanceof JLabel && component != moneyValueLabel && component != moneyTextLabel) {
                     getContentPane().remove(component);
                 }
             }
