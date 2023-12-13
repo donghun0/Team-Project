@@ -25,11 +25,6 @@ public class Homepage extends JFrame{
         setSize(1000, 800);
         setTitle("농담곰 방");
         setLocationRelativeTo(null);
-        
-
-       
-       
-        // 배경 이미지 설정
 
         ImageIcon backgroundImageIcon = new ImageIcon("img//login//nongdambang.png");
         Image backgroundImage = backgroundImageIcon.getImage();
@@ -39,32 +34,12 @@ public class Homepage extends JFrame{
         backgroundLabel.setBounds(0, 0, 1000, 750);
         setContentPane(backgroundLabel);
 
-//        // 추가 이미지 설정-악세서리로 설정
-//        ImageIcon additionalImageIcon = new ImageIcon("img//login//목도리-메인용.png");
-//        Image additionalImage = additionalImageIcon.getImage();
-//        Image resizedAdditionalImage = additionalImage.getScaledInstance(1000, 750, Image.SCALE_SMOOTH);
-//        additionalImageIcon = new ImageIcon(resizedAdditionalImage);
-//        JLabel additionalImageLabel = new JLabel(additionalImageIcon);
-//        additionalImageLabel.setBounds(0, 0, 984, 757);
-//        backgroundLabel.add(additionalImageLabel);
-////        
-////        //두번째 이미지-옷으로 설정
-//        ImageIcon additionalImageIcon2 = new ImageIcon("img//login//옷1.png");
-//        Image additionalImage2 = additionalImageIcon2.getImage();
-//        Image resizedAdditionalImage2 = additionalImage2.getScaledInstance(1000, 750, Image.SCALE_SMOOTH);
-//        additionalImageIcon2 = new ImageIcon(resizedAdditionalImage2);
-//        JLabel additionalImageLabel2 = new JLabel(additionalImageIcon2);
-//        additionalImageLabel2.setBounds(0, 0, 984, 757);
-//        backgroundLabel.add(additionalImageLabel2);
-
-        // 폰트 설정
         Font font = new Font("NEO둥근모", Font.PLAIN, 30);
 
-        // 게임 버튼
         JButton gameButton = createButton("게임", font);
         gameButton.setBounds(803, 100, 130, 50);
         gameButton.setBackground(Color.WHITE);
-        gameButton.setBorderPainted(false); // 버튼 테두리 없애기
+        gameButton.setBorderPainted(false);
         gameButton.addActionListener(new ActionListener() {
         	@Override
             public void actionPerformed(ActionEvent e) {
@@ -72,7 +47,7 @@ public class Homepage extends JFrame{
             }
         });
         
-     // 도전 버튼
+        // 도전 버튼
         JButton challengeButton = createButton("도전", font);
         challengeButton.setBounds(803, 170, 130, 50);
         challengeButton.setBackground(Color.WHITE);
@@ -80,7 +55,6 @@ public class Homepage extends JFrame{
         challengeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // 옷장 프레임을 열지 않고 바로 도전 시작
                 startChallenge();
             }
         });
@@ -89,7 +63,7 @@ public class Homepage extends JFrame{
         JButton shopButton = createButton("상점", font);
         shopButton.setBounds(803, 240, 130, 50);
         shopButton.setBackground(Color.WHITE);
-        shopButton.setBorderPainted(false); // 버튼 테두리 없애기
+        shopButton.setBorderPainted(false);
         shopButton.addActionListener(new ActionListener() {
         	@Override
             public void actionPerformed(ActionEvent e) {
@@ -98,6 +72,7 @@ public class Homepage extends JFrame{
             }
         });
         
+        // 옷장 버튼
         JButton closetButton = createButton("옷장", font);
         closetButton.setBounds(803, 310, 130, 50);
         closetButton.setBackground(Color.WHITE);
@@ -117,26 +92,23 @@ public class Homepage extends JFrame{
         moneyTextLabel.setBounds(820, 380, 300, 50);
         add(moneyTextLabel);
 
-        moneyValueLabel = new JLabel(GameStart.getMoney() + "원"); // 클래스 변수를 사용
+        moneyValueLabel = new JLabel(GameStart.getMoney() + "원");
         moneyValueLabel.setFont(new Font("NEO둥근모", Font.PLAIN, 30));
         moneyValueLabel.setForeground(Color.BLACK);
-        moneyValueLabel.setBounds(840, 420, 300, 50); // 위치 조정
+        moneyValueLabel.setBounds(840, 420, 300, 50);
         add(moneyValueLabel);
         
         GameStart.setHomepage(this);
 
-        // 버튼을 프레임에 추가
         add(challengeButton);
         add(closetButton);
         add(gameButton);
         add(shopButton);
 
-        // 프레임 표시
         setVisible(true);
     }
 	
 	private void startChallenge() {
-	    // 옷장에서 착용 중인 옷과 악세서리를 가져오기
 	    List<Item> wornClothes = new ArrayList<>();
 	    List<Item> wornAccessories = new ArrayList<>();
 
@@ -151,9 +123,7 @@ public class Homepage extends JFrame{
 	        }
 	    }
 
-	    // 두 카테고리 모두에 아이템을 착용했는지 확인
 	    if (!wornClothes.isEmpty() && !wornAccessories.isEmpty()) {
-	        // 두 카테고리에 모두 아이템을 착용한 경우 도전 시작
 	        DateTry dateTry = new DateTry(closet);
 	       
 	        SwingUtilities.invokeLater(() -> new Challenge.DateTryFrame(dateTry));
@@ -170,7 +140,6 @@ public class Homepage extends JFrame{
 	        }
 	    }
 
-	    // 착용한 옷이 있으면 이미지 추가
 	    if (cloth != null) {
 	        String clothImagePath = getImagePath(cloth);
 	        if (clothImagePath != null) {
@@ -185,7 +154,6 @@ public class Homepage extends JFrame{
 	        }
 	    }
 
-	    // 착용한 악세서리가 있으면 이미지 추가
 	    if (accessory != null) {
 	        String accessoryImagePath = getImagePath(accessory);
 	        if (accessoryImagePath != null) {
@@ -237,7 +205,6 @@ public class Homepage extends JFrame{
 
     public void updateBackgroundImageOnItemSelection(Item cloth, Item accessory) {
         SwingUtilities.invokeLater(() -> {
-            // 기존에 추가된 이미지가 있다면 제거
             Component[] components = getContentPane().getComponents();
             for (Component component : components) {
                 if (component instanceof JLabel) {
@@ -245,7 +212,6 @@ public class Homepage extends JFrame{
                 }
             }
 
-            // 착용한 옷이 있으면 이미지 추가
             if (cloth != null) {
                 String clothImagePath = getImagePath(cloth);
                 if (clothImagePath != null) {
@@ -260,7 +226,6 @@ public class Homepage extends JFrame{
                 }
             }
 
-            // 착용한 악세서리가 있으면 이미지 추가
             if (accessory != null) {
                 String accessoryImagePath = getImagePath(accessory);
                 if (accessoryImagePath != null) {
@@ -275,7 +240,6 @@ public class Homepage extends JFrame{
                 }
             }
 
-            // 갱신된 내용을 반영
             revalidate();
             repaint();
         });
