@@ -7,12 +7,10 @@ public class Item {
     private String category;
     private boolean worn;
     
-    // 기본 생성자
     public Item(String name) {
         this.name = name;
     }
     
-    // 생성자 오버로딩
     public Item(String name, int price, String category) {
         this.name = name;
         this.price = price;

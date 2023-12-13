@@ -16,7 +16,6 @@ public class Closet {
         }
     }
     
-    // 메소드 오버로딩
     public void addItem(List<Item> newItems) {
         for (Item item : newItems) {
             if (!items.contains(item)) {

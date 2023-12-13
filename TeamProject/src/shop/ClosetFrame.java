@@ -110,8 +110,6 @@ public class ClosetFrame extends JFrame {
                             }
 
                             updateCloset(closet);
-
-                            // 착용 전 상태와 착용 후 상태가 다를 때만 이미지 업데이트
                             updateBackgroundImage(getLastWornCloth(), getLastWornAccessory());
                  
                         

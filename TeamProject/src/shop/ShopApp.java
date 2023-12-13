@@ -27,7 +27,7 @@ public class ShopApp extends JFrame {
         
         setLocationRelativeTo(null);
         
-        Font defaultFont = new Font("NEO둥근모", Font.BOLD, 30); // Adjust the font size and style as needed
+        Font defaultFont = new Font("NEO둥근모", Font.BOLD, 30);
         UIManager.put("Button.font", defaultFont);
         UIManager.put("Label.font", defaultFont);
 
@@ -57,8 +57,6 @@ public class ShopApp extends JFrame {
         }
     }
     
-    
-
     public static ShopApp getInstance(Closet closet) {
         if (instance == null) {
             instance = new ShopApp(closet);
@@ -95,17 +93,13 @@ public class ShopApp extends JFrame {
 
         ImageIcon icon = new ImageIcon(imagePath);
         JButton itemButton = new JButton();
-        itemButton.setPreferredSize(new Dimension(270, 270)); // Adjust the size as needed
-
+        itemButton.setPreferredSize(new Dimension(270, 270));
         itemButton.setBackground(Color.WHITE);
         
-        Font defaultFont = new Font("NEO둥근모", Font.BOLD, 30); // Adjust the font size as needed
+        Font defaultFont = new Font("NEO둥근모", Font.BOLD, 30);
         itemButton.setFont(defaultFont);
-        
         itemButton.setLayout(new BorderLayout());
-
         itemButton.add(new JLabel(icon), BorderLayout.CENTER);
-
         itemButton.add(new JLabel("  $" + item.getPrice(), SwingConstants.CENTER), BorderLayout.SOUTH);
 
         itemButton.addActionListener(new ActionListener() {
@@ -116,7 +110,7 @@ public class ShopApp extends JFrame {
 
                 if (!item.isSoldOut()) {
                     if (GameStart.getMoney() >= item.getPrice()) {
-                        GameStart.decreaseMoney(item.getPrice()); // 돈 차감
+                        GameStart.decreaseMoney(item.getPrice());
                         item.setSoldOut(true);
                         updateItemButton(itemButton, item);
                         selectedItem = item;
@@ -146,7 +140,7 @@ public class ShopApp extends JFrame {
             if (window instanceof ClosetFrame) {
                 ClosetFrame closetFrame = (ClosetFrame) window;
                 closetFrame.updateCloset(closet);
-                closetFrame.updateBackgroundImageOnItemPurchase();  // 새로운 메서드 호출
+                closetFrame.updateBackgroundImageOnItemPurchase();
                 
                 if (Homepage.class.isInstance(closetFrame.getOwner())) {
                     Homepage homepage = (Homepage) closetFrame.getOwner();
@@ -164,7 +158,6 @@ public class ShopApp extends JFrame {
             itemButton.setEnabled(false);
         }
     }
-
 
     public static void main(String[] args) {
         Closet closet = new Closet();
