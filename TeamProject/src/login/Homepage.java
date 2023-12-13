@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Homepage extends JFrame{
+    private static Homepage instance;
 	private Closet closet;
     private JLabel moneyValueLabel;
 
@@ -108,6 +109,13 @@ public class Homepage extends JFrame{
         setVisible(true);
     }
 	
+	public static Homepage getInstance(Closet closet) {
+        if (instance == null) {
+            instance = new Homepage(closet);
+        }
+        return instance;
+    }
+	
 	private void startChallenge() {
 	    List<Item> wornClothes = new ArrayList<>();
 	    List<Item> wornAccessories = new ArrayList<>();
@@ -198,7 +206,8 @@ public class Homepage extends JFrame{
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new Homepage(closet);
+            	Homepage homepage = Homepage.getInstance(closet);
+                homepage.setVisible(true);
             }
         });
     }

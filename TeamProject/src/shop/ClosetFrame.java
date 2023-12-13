@@ -26,7 +26,7 @@ public class ClosetFrame extends JFrame {
 
         this.closet = closet;
         
-        setHomepage(new Homepage(closet));
+        this.homepage = Homepage.getInstance(closet);
 
         updateCloset(closet);
 
@@ -165,11 +165,10 @@ public class ClosetFrame extends JFrame {
     }
 
     public static void main(String[] args) {
+    	Closet closet = new Closet();
         SwingUtilities.invokeLater(() -> {
-            Closet closet = new Closet();
-            ClosetFrame closetFrame = new ClosetFrame(closet);
-            Homepage homepage = new Homepage(closet);
-            closetFrame.setHomepage(homepage);
+            Homepage homepage = Homepage.getInstance(closet);
+            homepage.setVisible(true);
         });
     }
 }
