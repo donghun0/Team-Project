@@ -56,11 +56,16 @@ public class ClosetFrame extends JFrame {
 
     public void updateCloset(Closet closet) {
         JPanel closetPanel = createClosetPanel(closet.getItems());
-
         JScrollPane scrollPane = new JScrollPane(closetPanel);
-
         setContentPane(scrollPane);
+        
+        Item lastWornCloth = getLastWornCloth();
+        Item lastWornAccessory = getLastWornAccessory();
 
+        // Homepage 인스턴스를 통해 메서드 호출
+        if (homepage != null) {
+            homepage.updateBackgroundImageOnItemSelection(lastWornCloth, lastWornAccessory);
+        }
         revalidate();
         repaint();
     }
