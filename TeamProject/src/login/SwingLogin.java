@@ -101,7 +101,7 @@ public class SwingLogin extends JFrame {
                 if (login.equals("성공")) {
                     JOptionPane.showMessageDialog(null, "로그인 성공", "로그인 확인!", JOptionPane.DEFAULT_OPTION);
 
-                    Homepage homepage = new Homepage(closet);
+                    Homepage homepage = Homepage.getInstance(closet);
                     homepage.setVisible(true);
 
                     dispose(); 
