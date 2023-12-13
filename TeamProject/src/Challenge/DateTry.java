@@ -8,16 +8,17 @@ import shop.Item;
 
 public class DateTry {
     private Closet closet;
-    private Map<String, Integer> combinationScoreMap; // 조합과 점수 매핑
+    private Map<String, Integer> combinationScoreMap; 
 
     public DateTry(Closet closet) {
         this.closet = closet;
         this.combinationScoreMap = new HashMap<>();
-        initializeScoreMap(); // 점수 맵 초기화
+        initializeScoreMap(); 
     }
 
+
     private void initializeScoreMap() {
-        // 64가지 조합에 대한 점수를 여기서 초기화
+        
     	combinationScoreMap.put("옷 1-악세서리 1", 2);
         combinationScoreMap.put("옷 1-악세서리 2", 40);
         combinationScoreMap.put("옷 1-악세서리 3", 24);
