@@ -93,7 +93,7 @@ public class Quiz {
 
     private void checkAnswer(ActionEvent e) {
         String selectedAnswer = ((JButton) e.getSource()).getText();
-        // HTML 태그 제거
+        
         selectedAnswer = selectedAnswer.replaceAll("<html><center>", "").replaceAll("</center></html>", "");
         
         Question currentQuestion = questions.get(currentQuestionIndex - 1);
@@ -129,18 +129,18 @@ public class Quiz {
         JButton closeButton = new JButton("종료");
         closeButton.setFont(font);
         closeButton.addActionListener(e -> {
-            dialog.dispose(); // 대화 상자를 닫음
-            frame.dispose(); // 상식퀴즈 게임 창을 닫음
-            openGameSelectionWindow(); // 게임 선택 창을 엶
+            dialog.dispose();
+            frame.dispose(); 
+            openGameSelectionWindow(); 
         });
         JPanel buttonPanel = new JPanel();
         buttonPanel.add(closeButton);
         dialog.add(buttonPanel, BorderLayout.SOUTH);
 
-        // 대화 상자 크기 조절
-        dialog.setPreferredSize(new Dimension(280, 250)); // 원하는 크기로 설정
-        dialog.pack(); // 대화 상자 크기를 내용에 맞게 조정
-        dialog.setLocationRelativeTo(frame); // 부모 창에 대해 중앙에 위치
+        
+        dialog.setPreferredSize(new Dimension(280, 250)); 
+        dialog.pack(); 
+        dialog.setLocationRelativeTo(frame); 
         dialog.setVisible(true);
     }
 

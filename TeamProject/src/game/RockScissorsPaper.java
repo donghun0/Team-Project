@@ -158,6 +158,7 @@ public class RockScissorsPaper {
         }
     }
     
+    
     private static void openGameSelectionWindow() {
         GameStart.main(null);
     }

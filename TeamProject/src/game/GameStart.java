@@ -62,7 +62,7 @@ public class GameStart {
         buttonPanel.setLayout(new GridLayout(3, 1));
         
 
-        // 가위바위보 게임 버튼
+        
         JButton rockPaperScissorsButton = new JButton("가위바위보");
         rockPaperScissorsButton.setBackground(new Color(135, 206, 250));
         rockPaperScissorsButton.setOpaque(true);
@@ -74,7 +74,7 @@ public class GameStart {
             }
         });
 
-        // 상식 퀴즈 게임 버튼
+        
         JButton quizButton = new JButton("상식 퀴즈");
         quizButton.setBackground(new Color(144, 238, 144));
         quizButton.setOpaque(true);
@@ -86,7 +86,7 @@ public class GameStart {
             }
         });
 
-        // 기억력 게임 버튼
+        
         JButton memoryMatchGameButton = new JButton("기억력 게임");
         memoryMatchGameButton.setBackground(new Color(255, 182, 193));
         memoryMatchGameButton.setOpaque(true);

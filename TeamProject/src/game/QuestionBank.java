@@ -44,7 +44,7 @@ public class QuestionBank {
         questions.add(new Question("올림픽에서 금메달은 주로 어떤 금속으로 만들어지나요?", new String[]{"금", "은", "동", "플래티넘"}, "은"));
         questions.add(new Question("'마하' 단위는 무엇을 측정하는 데 사용되나요?", new String[]{"압력", "온도", "속도", "높이"}, "속도"));
 
-        //30개
+        
     }
 
     public List<Question> getRandomQuestions(int numberOfQuestions) {

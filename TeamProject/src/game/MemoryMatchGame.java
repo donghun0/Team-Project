@@ -234,7 +234,7 @@ public class MemoryMatchGame extends JFrame implements ActionListener {
         public boolean isMatched() {
             return matched;
         }
-
+        
         public void setMatched(boolean matched) {
             this.matched = matched;
         }
