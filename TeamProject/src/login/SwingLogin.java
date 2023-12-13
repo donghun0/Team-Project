@@ -23,11 +23,11 @@ public class SwingLogin extends JFrame {
     public SwingLogin() {
         super("로그인 창!");
         
-        // 로그인 버튼 색상 변경
+       
         loginBtn.setBackground(new Color(255, 196, 235)); // 연핑크 색상
         loginBtn.setOpaque(true);
 
-        // 회원가입 버튼 색상 변경
+       
         memberbtn.setBackground(new Color(255, 196, 235)); // 연핑크 색상
         memberbtn.setOpaque(true);
 
@@ -40,18 +40,18 @@ public class SwingLogin extends JFrame {
         loginPanel.add(loginBtn);
         loginPanel.add(memberbtn);
 
-        // 라벨 가운데 정렬
+        
         idLabel.setHorizontalAlignment(NORMAL);
         pwLabel.setHorizontalAlignment(NORMAL);
 
-        // 현재 프레임 창 가운데 정렬
+        
         setSize(500, 200);
         this.setLocationRelativeTo(null);
 
         this.setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        // 로그인 버튼을 눌렀을 때
+        
         loginBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 
@@ -65,7 +65,7 @@ public class SwingLogin extends JFrame {
                     return;
                 }
 
-                // 텍스트 파일에 저장된 모든 글자를 가져온다 | 구분자로 아이디와 비번이 맞는게 있다면 로그인 시켜주면 된다.
+                
                 try {
                     BufferedReader reader = new BufferedReader(new FileReader("C:\\java_member\\member.txt"));
 
@@ -77,19 +77,19 @@ public class SwingLogin extends JFrame {
 
                     reader.close();
 
-                    // memberlist에 아이디와 비밀번호 저장하기
+                    
                     HashMap<String, String> memberlist = new HashMap<>();
 
                     for (int i = 0; i < txtmember.size(); i++) {
-                        // | 구분자 기준으로 잘라난 텍스트를 memberlist에 넣어주기.
+                        
                         String[] tempresult = txtmember.get(i).toString().split("\\|");
                         memberlist.put(tempresult[0], tempresult[1]);
                     }
 
-                    // txt 파일에서 가져온 아이디 비번과 입력한 아이디 비번이 맞는지 확인
+                    
                     for (String key : memberlist.keySet()) {
                         if (id.equals(key.trim()) && pw.equals(memberlist.get(key))) {
-                            // 로그인성공!
+                            
                             login = "성공";
                         }
                     }
@@ -114,7 +114,7 @@ public class SwingLogin extends JFrame {
             }
         });
 
-        // 회원가입 버튼을 눌렀을 때
+        
         memberbtn.addActionListener(new ActionListener() {
 
             @Override
@@ -124,17 +124,17 @@ public class SwingLogin extends JFrame {
             }
         });
         
-        // 폰트 파일 경로
+       
         String fontFilePath = "img/neodgm.ttf";
 
         try {
-            // 폰트 파일 로드
+            
             Font customFont = Font.createFont(Font.TRUETYPE_FONT, new java.io.File(fontFilePath));
 
-            // 폰트 크기 설정
+            
             customFont = customFont.deriveFont(Font.PLAIN, 30);
 
-            // 폰트 설정
+            
             idLabel.setFont(customFont);
             pwLabel.setFont(customFont);
             idText.setFont(customFont);
@@ -143,7 +143,7 @@ public class SwingLogin extends JFrame {
             memberbtn.setFont(customFont);
         } catch (Exception ex) {
             ex.printStackTrace();
-            // 폰트 로딩에 실패한 경우 기본 폰트를 사용하거나 에러 처리를 수행할 수 있습니다.
+            
         }
     }
     

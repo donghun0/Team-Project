@@ -30,7 +30,7 @@ public class SignUp extends JDialog{
 		this.signUpPanel.add(pwChecklabel);
 		this.signUpPanel.add(pwCheckText);
 		
-        signUpbtn.setBackground(new Color(255, 196, 235)); // 연핑크 색상
+        signUpbtn.setBackground(new Color(255, 196, 235)); 
 
 		this.signUpPanel.add(signUpbtn);
 		
@@ -40,17 +40,17 @@ public class SignUp extends JDialog{
 
 		checkValue();
 		
-		// 폰트 파일 경로
+		
         String fontFilePath = "img/neodgm.ttf";
 
         try {
-            // 폰트 파일 로드
+            
             Font customFont = Font.createFont(Font.TRUETYPE_FONT, new java.io.File(fontFilePath));
 
-            // 폰트 크기 설정
+            
             customFont = customFont.deriveFont(Font.PLAIN, 30);
 
-            // 폰트 설정
+           
             idlabel.setFont(customFont);
             idText.setFont(customFont);
             pwlabel.setFont(customFont);
@@ -60,11 +60,11 @@ public class SignUp extends JDialog{
             signUpbtn.setFont(customFont);
         } catch (Exception ex) {
             ex.printStackTrace();
-            // 폰트 로딩에 실패한 경우 기본 폰트를 사용하거나 에러 처리를 수행할 수 있습니다.
+            
         }
 	}
 	 
-	 //회원 가입할때 모든 값이 입력되었는지 체크하기 위한 메소드
+	
 	 private void checkValue(){
 		 signUpbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -92,8 +92,7 @@ public class SignUp extends JDialog{
 				}
 				
 				
-                /** 컴퓨터 C드라이브에 java_member 폴더 만들고 member.txt 파일 만드시면 됩니다. **/
-				//회원가입시 텍스트 파일을 하나 만들어서 아이디와 비번을 저장 하자. 한줄 뛰고 아이디|비밀번호 텍스트 파일에 차곡 차곡 저장하기~ | 는 아이디랑 패스워드 구분하기 위해 사용
+                
 				String txt = idText.getText()+"|"+pwText.getText();
 				txt+="\n";
 				
@@ -103,11 +102,11 @@ public class SignUp extends JDialog{
 				try{
 					BufferedWriter fw = new BufferedWriter(new FileWriter(fileName, true));
 					
-					// 파일안에 문자열 쓰기
+					
 					fw.write(txt);
 					fw.flush();
 
-					// 객체 닫기
+					
 					fw.close();					
 					
 				}catch(Exception errmsg){
@@ -115,7 +114,7 @@ public class SignUp extends JDialog{
 				}
 				
 				
-				//여기까지 왔다면 모든 값을 입력하고 선택하는 것이 완료되었으니 회원가입 과정이 완료.				
+							
 				membershipProgress = true;				
 				
 				JOptionPane.showMessageDialog(null, "회원 가입이 완료 되었습니다.","회원 가입 완료.", JOptionPane.WARNING_MESSAGE);
@@ -137,7 +136,7 @@ public class SignUp extends JDialog{
 	        });
 	 }
 	 
-	 //메인 클래스에서 다이얼로그 회원가입 창 데이터를 가져오기 위한 get 메소드 선언
+	 
 	public String getIdText() {
 		return this.idText.getText().trim();
 	}
